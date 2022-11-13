@@ -16,7 +16,7 @@ const Header = ({setSearchTerm, handleSearchTerm}) => {
                     <h1 style={{textAlign: 'center'}}>Pourquoi acheter quand on peut emprunter?</h1>
                     <div  className='searchbox'>
                         
-                        <input id='search' type="search" onChange={handleChange} placeholder="Qu'est-ce que vous recherchez?" name="" id="inputsearch" className="inputsearch"/>
+                        <input  type="search" onChange={handleChange} placeholder="Qu'est-ce que vous recherchez?" name="" id="inputsearch" className="inputsearch"/>
                         <Link to="/recherche" className='searchBtn' onClick={handleSearchTerm}>
                             
                                 <SearchIcon sx={{color:'#262D44'}}/>

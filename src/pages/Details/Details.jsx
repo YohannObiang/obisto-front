@@ -3,19 +3,10 @@ import './Details.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import image from '../../assets/Iphone X.jpg';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import Caroussel from "../../components/Caroussel";
-import Box from '@mui/material/Box';
-import axios from 'axios';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import {Link } from "react-router-dom";
 
 

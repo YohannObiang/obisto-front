@@ -3,10 +3,8 @@ import './LatestOffers.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import image from '../../assets/image.png';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import axios from 'axios';
@@ -32,17 +30,8 @@ const LatestOffers = ({ setBorrowed}) => {
   });
 
 
-    const [categorie, setcategorie] = React.useState([]);
 
-  React.useEffect(() => {
-    getcategorie();
-  }, []);
 
-  const getcategorie = async () => {
-    var response = await axios.get("http://localhost:3001/categories");
-    setcategorie(response.data);
-
-  };
 
   const Borrow=(id_objet)=>{
     const choosenOne=Objets.filter((element,index)=>{

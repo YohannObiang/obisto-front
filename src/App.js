@@ -14,12 +14,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import PhotoIcon from '@mui/icons-material/Photo';
+
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import GamesIcon from '@mui/icons-material/Games';
-import GarageIcon from '@mui/icons-material/Garage';
 import DiscountIcon from '@mui/icons-material/Discount';
 import logo from './assets/logo (2).png';
 import './App.css';
@@ -29,7 +26,6 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Home from './pages/Home';
 import SignIn from './pages/Sign In';
 import SignUp from './pages/Sign up';
-import AddressForm from './components/AddressForm';
 import Footer from './components/footer/Footer';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -193,9 +189,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <VolumeUpIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+           
                 Sono
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>
@@ -207,9 +203,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <CameraAltIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+              
                 Caméras
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>
@@ -221,9 +217,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <GamesIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+              
                 Jeux vidéos
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>
@@ -235,9 +231,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <SmartphoneIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+              
                 Téléphones
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>
@@ -249,9 +245,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <ConstructionIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+              
                 Outils
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>
@@ -263,9 +259,9 @@ console.log(Borrowed)
                 <ListItemIcon>
                   <PrecisionManufacturingIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-                <a>
+              
                 Machines
-                </a>
+                
               </ListItemButton>
             </ListItem>
             </Link>

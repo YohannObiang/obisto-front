@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Ps4 from '../assets/PS4.png'
 
 export default class Caroussel extends Component {
   render() {

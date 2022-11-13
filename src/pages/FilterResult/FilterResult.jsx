@@ -3,18 +3,11 @@ import './FilterResult.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import image from '../../assets/image.png';
 import Divider from '@mui/material/Divider';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import {Link } from "react-router-dom";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
 
 
@@ -35,7 +28,6 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
     },
   });
 
-  const [Prix, setPrix] = React.useState(0);
   const Borrow=(id_objet)=>{
     const choosenOne=filteredstuffs.filter((element,index)=>{
       return element.id_objet === id_objet});
