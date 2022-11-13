@@ -289,7 +289,7 @@ console.log(Borrowed)
         setBorrowed={setBorrowed}
         />} /> 
         <Route path="/Ajouter-un-article/Connexion" element={<SignIn/>} /> 
-        <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
+        <Route path="/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}
         />} /> 
