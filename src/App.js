@@ -149,7 +149,7 @@ console.log(Borrowed)
             <img  src={logo} alt="" />
             </Link>
           </div>
-          <Link to="/Ajouter-un-article/Connexion">
+          <Link to="/Ajouter-un-article">
 
           <IconButton
             color="inherit"
@@ -288,8 +288,8 @@ console.log(Borrowed)
         IdCategorie = {IdCategorie}
         setBorrowed={setBorrowed}
         />} /> 
-        <Route path="/Ajouter-un-article/Connexion" element={<SignIn/>} /> 
-        <Route path="/Inscription" element={<SignUp/>} /> 
+        <Route path="/Ajouter-un-article" element={<SignIn/>} /> 
+        <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}
         />} /> 
