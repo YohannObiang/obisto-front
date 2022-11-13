@@ -40,7 +40,9 @@ const Details = ({Borrowed}) => {
           <ThemeProvider theme={theme} >
 
         <Card sx={{ width: '72%', height:'580px', marginBottom: 5}}  key='' >
-          <Caroussel/>
+        <Caroussel 
+        nom = {Borrowed.objet}
+        image = {Borrowed.image1}/>
 
           </Card>
           <Card sx={{ width: '20%', height:'580px', marginBottom: 5}}  key='' className="cardDetails">
@@ -48,8 +50,6 @@ const Details = ({Borrowed}) => {
 
         <CardContent>
         <h3>{Borrowed.prix_jour} fcfa /Jour</h3>
-        <strong>{Borrowed.objet}</strong>
-        <br /><br />
         <Divider/>
         <br />
         <span>Forfaits de location:</span><br />
@@ -76,25 +76,18 @@ const Details = ({Borrowed}) => {
        <ThemeProvider theme={theme} >
 
         <Card sx={{ width: '90%', height:'450px', marginBottom: 2}}  key='' >
-          <Caroussel/>
+          <Caroussel 
+          nom = {Borrowed.objet}
+          image = {Borrowed.image1}/>
 
-        <CardContent>
+ 
 
         
-        </CardContent>
-        <Divider/>
-
-        <CardActions>
-          <Button size="medium" variant="contained" color='secondary'> <strong className='text'>Emprunter</strong></Button>
-          <Button size="small" ><span className='text'>VOIR</span></Button>
-        </CardActions>
           </Card>
-          <Card sx={{ width: '90%', height:'270px', marginBottom: 2}}  key='' >
+          <Card sx={{ width: '90%', height:'220px', marginBottom: 2}}  key='' >
         
         <CardContent>
         <h3>{Borrowed.prix_jour} fcfa /Jour</h3>
-        <strong>{Borrowed.objet}</strong>
-        <br /><br />
         <Divider/>
           <div className="etatproduit">
             <div>

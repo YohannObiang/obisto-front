@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 
-export default class Caroussel extends Component {
-  render() {
+const Caroussel = ({image, nom}) => {
     const settings = {
       dots: true,
       infinite: true,
@@ -10,30 +9,30 @@ export default class Caroussel extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    var img = `/images/${image}`
     return (
       <div>
-        <h2> Single Item</h2>
+        <h2>{nom}</h2>
         <Slider {...settings}>
-        <div className="slideimg">
-          <img src="/images/Mixeur.jpeg" height="100%" alt="" />
+        <div className="slideimg" >
+          <img src={img}  height="100%" alt="" />
         </div>
         <div className="slideimg">
-          <img src="/images/Mixeur.jpeg" height="100%" alt="" />
+          <img src="/images/" height="100%" alt="" />
         </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+        <div className="slideimg">
+          <img src="/images/" height="100%" alt="" />
+        </div>
+        <div className="slideimg">
+          <img src="/images/" height="100%" alt="" />
+        </div>
+        <div className="slideimg">
+          <img src="/images/" height="100%" alt="" />
+        </div>
+         
         </Slider>
       </div>
     );
   }
-}
+
+  export default Caroussel;

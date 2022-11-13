@@ -128,9 +128,15 @@ margin: auto;
 }
 .slideimg{
 margin: auto;
-height: 350px;
+height: 400px;
 width: 500px;
 background: #000;
+display:flex;
+align-items:center;
+justify-content: center;
+}
+.slideimg img{
+  margin: auto;
 }
 @media (max-width:900px){
    .avantages{
@@ -138,6 +144,10 @@ background: #000;
     grid-template-columns: 1fr 1fr;
     width: 85vw;
     margin: 25px auto;
+  }
+  .slideimg{
+    height: 330px;
+
   }
   .avantage{
     width: 38vw;
