@@ -35,12 +35,38 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
 
 
   };
+  const [PriceFilter, setPriceFilter] = React.useState(filteredstuffs);
+  console.log(PriceFilter)
   const handleChangePrix = (event) => {
     
-    if(event.target.value === 2){
-    var filteredData = filteredstuffs.filter(item => item.prix_jour < 10000 && item.prix_jour > 5000);
-    setfilteredstuffs(filteredData);
+    if(event.target.value == 0){
+    setPriceFilter(filteredstuffs);
   }
+  if(event.target.value == 1){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour < 2501 && item.prix_jour > -1);
+    setPriceFilter(filteredData);
+  }
+  if(event.target.value == 2){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour < 5001 && item.prix_jour > 2500);
+    setPriceFilter(filteredData);
+  }
+  if(event.target.value == 3){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour < 10001 && item.prix_jour > 5000);
+    setPriceFilter(filteredData);
+  }
+  if(event.target.value == 4){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour < 20001 && item.prix_jour > 10000);
+    setPriceFilter(filteredData);
+  }
+  if(event.target.value == 5){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour < 30001 && item.prix_jour > 20000);
+    setPriceFilter(filteredData);
+  }
+  if(event.target.value == 6){
+    var filteredData = filteredstuffs.filter(item => item.prix_jour > 30000);
+    setPriceFilter(filteredData);
+  }
+
     // if(Prix === 2){
     //   var filteredData = filteredstuffs.filter(item => item.prix >= 2501 && item.prix <= 5000);
     // setfilteredstuffs(filteredData);
@@ -60,14 +86,14 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
                 <option value={2}>2501 - 5000</option>
                 <option value={3}>5001 - 10000</option>
                 <option value={4}>10001 - 20000</option>
-                <option value={5}>10001 - 20000</option>
-                <option value={6}>Plus de 20000</option>
+                <option value={5}>20001 - 30000</option>
+                <option value={6}>Plus de 30000</option>
             </select>
             
 
         </div>
         <div className="LatestOffers">
-        {filteredstuffs.map((item) => {
+        {PriceFilter.map((item) => {
 
 
   // var cate = filteredstuffs
@@ -93,9 +119,6 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
           <br />
           <Typography  variant="h7" className='text'>
           {item.prix_jour} fcfa /Jour
-          </Typography> <br />
-          <Typography  variant="h7" className='text'>
-          {item.prix_semaine} fcfa /Semaine
           </Typography>
         </CardContent>
         <Divider/>

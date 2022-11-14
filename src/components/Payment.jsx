@@ -5,29 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
+
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -37,52 +15,70 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-export default function Review() {
+export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, Nom,Prenom,Email,Phone,Quartier}) {
+
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+  function formatDate(date){
+  return[
+    padTo2Digits(date.getDate()),
+    padTo2Digits(date.getMonth() + 1),
+    date.getFullYear(),
+  ].join('/');
+  
+  }
+  
+  var debut = formatDate(new Date(StartDate));
+  var fin = formatDate(new Date(EndDate));
+  var total = Borrowed.prix_jour * BorrowPeriod
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        <strong>Commande</strong>
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+
+          <div>
+          <ListItem key={Borrowed.objet} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={Borrowed.objet} />
+            <Typography variant="body2"><strong>{Borrowed.prix_jour}fcfa /Jour</strong></Typography>
           </ListItem>
-        ))}
+          <br />
+          <ListItem sx={{ py: 0, px: 0 }}>
+            Du:
+          <ListItemText primary={debut} />
+          au:
+          <ListItemText primary={fin} />
+          <Typography variant="body2"><strong>{BorrowPeriod} jour(s) </strong></Typography>
+        </ListItem>
+        <ListItem sx={{ py: 0, px: 0 }}>
+          <>(jj/mm/aaaa)</>
+        </ListItem>
+
+        </div>
+        <br />
+        <br />
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {total}fcfa
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
+          <strong>Destinataire</strong>
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Nom: <strong>{Nom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Prenom: <strong>{Prenom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Email: <strong>{Email}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Telephone: <strong>{Phone}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Quartier: <strong>{Quartier}</strong></div>
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-        </Grid>
+
       </Grid>
     </React.Fragment>
   );

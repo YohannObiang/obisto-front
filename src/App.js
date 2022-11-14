@@ -103,7 +103,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getObjets = async () => {
-    var response = await axios.get("https://mocki.io/v1/1e2ef370-5248-4738-ad84-b5127aaea339");
+    var response = await axios.get("https://mocki.io/v1/5e67d381-142e-43aa-ba0e-8fb5b59db252");
     setObjets(response.data);
 
   };
@@ -123,9 +123,13 @@ export default function PersistentDrawerLeft() {
   };
 
   const [Borrowed, setBorrowed] = useState('');
+  const [SingleObject, setSingleObject] = useState({});
   const [IdCategorie, setIdCategorie] = useState('');
+  const [ObjectCategorie, setObjectCategorie] = useState([]);
   const [SearchTerm, setSearchTerm] = useState("");
-console.log(Borrowed)
+
+  
+console.log(SingleObject)
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -283,6 +287,8 @@ console.log(Borrowed)
         filteredstuffs={filteredstuffs}
         setfilteredstuffs={setfilteredstuffs}
         setBorrowed={setBorrowed}
+        setSingleObject={setSingleObject}
+
         />} /> 
         <Route path="/categorie" element={<Categorie 
         IdCategorie = {IdCategorie}

@@ -14,25 +14,25 @@ const Avantages = () => {
                         <WidgetsIcon sx={{fontSize:'7vw'}}/>
                     </div>
                     <strong>Emprunter toutes choses</strong>
-                    <p className="centeredText" >Emprunter des objets au leu d'acheter</p>
+                    <p className="centeredText" >Emprunter des objets au lieu d'acheter</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
                         <SavingsIcon sx={{fontSize:'7vw'}}/>
                     </div>                    <strong>Economiser de l'argent</strong>
-                    <p className="centeredText" >Payer moins et louer à tres petit prix</p>
+                    <p className="centeredText" >Payer moins et louer à très petit prix</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
                         <HandshakeIcon sx={{fontSize:'7vw'}}/>
-                    </div>                    <strong>Faire louer ses biens</strong>
-                    <p className="centeredText" >Rendre lucratifs ses objets peu utilisés</p>
+                    </div>                    <strong>Faire louer votre biens</strong>
+                    <p className="centeredText" >Rendre lucratifs votre objets peu utilisés</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
                         <TrendingUpIcon sx={{fontSize:'7vw'}}/>
-                    </div><strong>Booster son business</strong>
-                    <p className="centeredText" >Optimiser son business de location</p>
+                    </div><strong>Booster votre business</strong>
+                    <p className="centeredText" >Optimiser votre business de location</p>
                 </div>
             </div>
             

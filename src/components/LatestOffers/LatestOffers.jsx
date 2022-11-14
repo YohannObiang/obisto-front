@@ -87,9 +87,6 @@ const LatestOffers = ({ setBorrowed}) => {
           <br />
           <Typography  variant="h7" className='text'>
           {item.prix_jour} fcfa /Jour
-          </Typography> <br />
-          <Typography  variant="h7" className='text'>
-          {item.prix_semaine} fcfa /Semaine
           </Typography>
         </CardContent>
         <Divider/>

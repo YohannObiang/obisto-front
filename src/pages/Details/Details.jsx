@@ -56,6 +56,7 @@ const Details = ({Borrowed}) => {
         <span>{Borrowed.prix_jour} fcfa /Jour</span><br />
         <span>{Borrowed.prix_semaine} fcfa /Semaine</span><br /><br />
         <span>Etat: Excellent</span><br /><br />
+        <span>Caution: Aucune</span><br /><br />
         <div className="description">
         {Borrowed.description}
         </div>
@@ -84,7 +85,7 @@ const Details = ({Borrowed}) => {
 
         
           </Card>
-          <Card sx={{ width: '90%', height:'220px', marginBottom: 2}}  key='' >
+          <Card sx={{ width: '90%', height:'200px', marginBottom: 2}}  key='' >
         
         <CardContent>
         <h3>{Borrowed.prix_jour} fcfa /Jour</h3>
@@ -93,12 +94,11 @@ const Details = ({Borrowed}) => {
             <div>
         <span>Forfaits de location:</span><br />
         <span>{Borrowed.prix_jour} fcfa /Jour</span><br />
-        <span>{Borrowed.prix_semaine} fcfa /Semaine</span><br />
             </div>
             
         <div>
-                  <span>Etat: Excellent</span><br />
-
+                  <span>Etat: {Borrowed.etat}</span><br />
+                  <span>Caution: {Borrowed.caution}</span>
         </div>
           </div>
         

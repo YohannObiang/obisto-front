@@ -17,18 +17,7 @@ import Payment from './Payment';
 
 const steps = ['Détails de commande', 'Vérification des détails'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <Payment />;
-    // case 2:
-    //   return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+
 
 const theme = createTheme({
   palette: {
@@ -44,8 +33,57 @@ const theme = createTheme({
     },
   },
 });
-export default function CheckoutForm() {
+export default function CheckoutForm({Borrowed}) {
+
+  const [StartDate, setStartDate] = React.useState('');
+  const [EndDate, setEndDate] = React.useState('');
+  const [Nom, setNom] = React.useState('');
+  const [Prenom, setPrenom] = React.useState('');
+  const [Email, setEmail] = React.useState('');
+  const [Phone, setPhone] = React.useState('');
+  const [Quartier, setQuartier] = React.useState('');
+  const [BorrowPeriod, setBorrowPeriod] = React.useState('');
+  function getStepContent(step) {
+    
+    switch (step) {
+      case 0:
+        return <AddressForm 
+        StartDate={StartDate} setStartDate={setStartDate} 
+        EndDate={EndDate} setEndDate={setEndDate}  
+        setBorrowPeriod={setBorrowPeriod}
+        setNom={setNom} 
+        setPrenom={setPrenom}
+        setEmail={setEmail}
+        setPhone={setPhone}
+        setQuartier={setQuartier}
+        Nom={Nom}
+        Prenom={Prenom}
+        Email={Email}
+        Phone={Phone}
+        Quartier={Quartier}
+        />;
+      case 1:
+        return <Payment 
+        StartDate={StartDate} setStartDate={setStartDate} 
+        EndDate={EndDate} setEndDate={setEndDate} 
+        BorrowPeriod={BorrowPeriod}
+        Borrowed={Borrowed}
+        Nom={Nom}
+        Prenom={Prenom}
+        Email={Email}
+        Phone={Phone}
+        Quartier={Quartier}
+        />;
+      // case 2:
+      //   return <Review />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+
   const [activeStep, setActiveStep] = React.useState(0);
+
+
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
