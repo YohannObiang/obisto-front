@@ -13,10 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Dashboard from './dashboard/dashboard';
-import AuthContext from "../context/AuthProvider";
-// import axios from '../api/axios';
-import axios from 'axios';
 import { useEffect, useRef, useState, useContext } from 'react';
+import AuthContext from "../context/AuthProvider";
+import axios from '../api/axios';
 
 
 const LOGIN_URL = '/proptietaire';
@@ -59,90 +58,48 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     document.getElementById('appbar').style.display="none"
       e.preventDefault();
-
-      // try{
-      //   const response = await axios.post(LOGIN_URL, 
-      //       JSON.stringify({nom: user, password: pwd}),
-      //       {
-      //         headers: { 'Content-Type': 'application/json'},
-      //         withCredentials: true
-      //       }
-      //     );
-      //     console.log(JSON.stringify(response?.data));
-      //     const accesToken = response?.data?.accessToken;
-      //     const roles = response?.data?.roles;
-      //     setAuth({ user, pwd, roles,accesToken });
-      //     setUser('')
-      //     setPwd('')
-      //     setSuccess(true);
-      // } catch (err) {
-      //   if(!err?.response){
-      //   setErrMsg('No Server Response');
-      //   } else if (err.response?.status === 400){
-      //     setErrMsg('Missing UserName or Password');
-      //   }
-      //   else if (err.response?.status === 401){
-      //     setErrMsg('Unauthorized');
-      //   }
-      //   else{
-      //     setErrMsg('Login failed')
-      //   }
-      //   errRef.current.focus()
-      // }
-      
-    
-      
-  }
-
-  const [Objets, setObjets] = useState([]);
-  const [IdUser, setIdUser] = useState(0);
-  const [Motdepasse, setMotdepasse] = useState('ZingaClenn');
-
-  useEffect(() => {
-    getObjets();
-  }, []);
-
-
-  const getObjets = async () => {
-    var response = await axios.get("https://mocki.io/v1/e23eb0cf-8aa8-41f4-b82c-123db40eb9f2");
-    setObjets(response.data);
-
-  };
-
-
-  const Connexion = (e) => {
- 
-  for (let index = 0; index <= Objets.length+1; index++) {
-    const element1 = Objets[index].email_proprio;
-    const element2 = Objets[index].password;
-    const fromdb = element1+element2
-    const frominput = user+pwd
-    if(frominput === fromdb && index < Objets.length){
       setSuccess(true);
-      alert("Bienvenue "+Objets[index].nom+ " " +Objets[index].prenom)
 
-      setIdUser(index)
-      break
-
-
-    }
-
-    else{
-      document.getElementById('errMessage').innerHTML='<p>Identifiants rronés</p>'
-    }
+      try{
+        const response = await axios.post(LOGIN_URL, 
+            JSON.stringify({nom: user, password: pwd}),
+            {
+              headers: { 'Content-Type': 'application/json'},
+              withCredentials: true
+            }
+          );
+          console.log(JSON.stringify(response?.data));
+          const accesToken = response?.data?.accessToken;
+          const roles = response?.data?.roles;
+          setAuth({ user, pwd, roles,accesToken });
+          setUser('')
+          setPwd('')
+          setSuccess(true);
+      } catch (err) {
+        if(!err?.response){
+        setErrMsg('No Server Response');
+        } else if (err.response?.status === 400){
+          setErrMsg('Missing UserName or Password');
+        }
+        else if (err.response?.status === 401){
+          setErrMsg('Unauthorized');
+        }
+        else{
+          setErrMsg('Login failed')
+        }
+        errRef.current.focus()
+      }
+      
     
-    
+      
   }
-}
-
-
 
   return (
 
     <>
     {success ? (
         <section>
-            <Dashboard IdUser={IdUser}/>
+            <Dashboard/>
         </section>
     ) : (
 
@@ -189,14 +146,17 @@ export default function SignIn() {
               onChange={(e)=> setPwd(e.target.value)}
               value={pwd}
             />
-            <div id="errMessage"></div>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color='secondary'
-              onClick={Connexion}
+              onClick={handleSubmit}
             >
               <strong>
               Se connecter</strong>

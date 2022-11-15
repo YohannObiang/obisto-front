@@ -103,7 +103,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getObjets = async () => {
-    var response = await axios.get("https://mocki.io/v1/10385da0-d991-4c3c-8c5c-4973477cd44e");
+    var response = await axios.get("https://mocki.io/v1/5e67d381-142e-43aa-ba0e-8fb5b59db252");
     setObjets(response.data);
 
   };
@@ -129,16 +129,14 @@ export default function PersistentDrawerLeft() {
   const [SearchTerm, setSearchTerm] = useState("");
 
   
-function reset (){
-  document.getElementById('allcategorystuffs').style.display='grid';
-  document.getElementById('somecategorystuffs').style.display='none';
-}
+console.log(SingleObject)
+
   return (
     <Box sx={{ display: 'flex' }}>
               <BrowserRouter>
 
       <CssBaseline />
-      <AppBar position="fixed" open={open} id='appbar'>
+      <AppBar position="fixed" open={open} >
         <Toolbar className='Topbar'>
           <div className='Topbar'>
             <IconButton
@@ -188,7 +186,7 @@ function reset (){
         <Divider />
         <List>
        
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Sono'); reset()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Sono')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -202,7 +200,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Caméra')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Caméra')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -216,7 +214,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Jeu vidéo')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Jeu vidéo')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -230,7 +228,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Téléphone')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Téléphone')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -244,7 +242,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Outil')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Outil')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -258,7 +256,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Machine')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Machine')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -296,7 +294,7 @@ function reset (){
         IdCategorie = {IdCategorie}
         setBorrowed={setBorrowed}
         />} /> 
-        <Route path="/Ajouter-un-article" element={<SignIn/>} /> 
+        <Route path="/Ajouter-un-article" element={<Dashboard/>} /> 
         <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}

@@ -92,7 +92,7 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
             
 
         </div>
-        <div className="LatestOffers">
+        <div id="searchResultnull" className="LatestOffers">
         {PriceFilter.map((item) => {
 
 

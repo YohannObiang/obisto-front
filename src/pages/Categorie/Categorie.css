@@ -6,6 +6,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+#somecategorystuffs{
+    display: none
+}
 .price{
     display: flex;
     flex-direction: column;

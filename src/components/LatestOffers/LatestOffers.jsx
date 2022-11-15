@@ -44,10 +44,10 @@ const LatestOffers = ({ setBorrowed}) => {
 
   React.useEffect(() => {
     getObjets();
-  }, []);
+  });
 
   const getObjets = async () => {
-    var response = await axios.get("http://localhost:3001/objets");
+    var response = await axios.get("https://mocki.io/v1/10385da0-d991-4c3c-8c5c-4973477cd44e");
     setObjets(response.data);
 
   };

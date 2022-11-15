@@ -68,15 +68,15 @@ export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, Nom,
         </ListItem>
       </List>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
           <strong>Destinataire</strong>
           </Typography>
-          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Nom: <strong>{Nom}</strong></div>
-          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Prenom: <strong>{Prenom}</strong></div>
-          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Email: <strong>{Email}</strong></div>
-          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Telephone: <strong>{Phone}</strong></div>
-          <div gutterBottom style={{display:'flex', justifyContent: 'space-between'}}>Quartier: <strong>{Quartier}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Nom: <strong>{Nom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Prenom: <strong>{Prenom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Email: <strong>{Email}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Telephone: <strong>{Phone}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Quartier: <strong>{Quartier}</strong></div>
         </Grid>
 
       </Grid>
