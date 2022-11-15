@@ -62,8 +62,8 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
       
 
       const handleChangePrix = (event) => {
-        document.getElementById('somecategorystuffs').style.display='grid';
-        document.getElementById('allcategorystuffs').style.display='none';
+        // document.getElementById('somecategorystuffs').style.display='grid';
+        // document.getElementById('allcategorystuffs').style.display='none';
         if(event.target.value == 0){
         setPriceFilter(filteredstuffs);
       }

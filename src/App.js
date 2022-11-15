@@ -202,7 +202,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Caméra')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Caméra')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -216,7 +216,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Jeu vidéo')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Jeu vidéo')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -230,7 +230,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Téléphone')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Téléphone')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -244,7 +244,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Outil')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Outil')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -258,7 +258,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{reset(); setIdCategorie('Machine')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Machine')}}>
 
             <ListItem disablePadding>
               <ListItemButton>
