@@ -37,7 +37,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
  
 
   const getObjets = async () => {
-    var response = await axios.get("https://mocki.io/v1/10385da0-d991-4c3c-8c5c-4973477cd44e");
+    var response = await axios.get("https://obistobackend.onrender.com/objets");
     setObjets(response.data);
 
   };

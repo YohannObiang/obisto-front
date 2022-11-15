@@ -145,7 +145,7 @@ const getProprio = async () => {
   });
 
   const getitems = async () => {
-    var response = await axios.get(`http://localhost:3001/proprietaires/objets/${id}`);
+    var response = await axios.get(`https://obistobackend.onrender.com/proprietaires/objets/${id}`);
     setitems(response.data);
 
   };
@@ -158,7 +158,7 @@ const getProprio = async () => {
   });
 
   const getOrders = async () => {
-    var response = await axios.get(`http://localhost:3001/commandes/proprietaire/${id}`);
+    var response = await axios.get(`https://obistobackend.onrender.com/commandes/proprietaire/${id}`);
     setOrders(response.data);
 
   };
