@@ -91,7 +91,7 @@ useEffect(() => {
 
 
 const getProprio = async () => {
-  var response = await axios.get("http://localhost:3001/proprietaires");
+  var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
   setProprio(response.data[IdUser]);
 
 };
