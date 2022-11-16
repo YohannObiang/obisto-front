@@ -33,7 +33,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
 
   React.useEffect(() => {
     getObjets();
-  }, []);
+  });
  
 
   const getObjets = async () => {
@@ -129,9 +129,11 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
         <ThemeProvider theme={theme}>
 
       <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
+      <Link to="/Details">
       <div className="img"
-      style={{backgroundImage:`URL(./images/${item.image1})`}}
-      ></div>
+        style={{backgroundImage:`URL(./images/${item.image1})`}}
+        onClick={()=>Borrow(item.id_objet)}
+        ></div></Link>
       <CardContent>
 
       

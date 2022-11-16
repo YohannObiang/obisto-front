@@ -32,14 +32,13 @@ export default function Orders({orders}) {
     var id = orders[0]
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ width: '100%' }} aria-label="simple table">
+      <Table sx={{ width: '100vw' }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Id commandes</TableCell>
             <TableCell align="center">Objet</TableCell>
             <TableCell align="center">Dates</TableCell>
             <TableCell align="center">Statut</TableCell>
-            <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,13 +57,7 @@ export default function Orders({orders}) {
               <TableCell align="center">{row.id_ojet}</TableCell>
               <TableCell align="center">{row.date_de_commande}</TableCell>
               <TableCell align="center">{row.statut}</TableCell>
-              <TableCell align="right">
-                <Button size='small' color='secondary' variant='contained'>
-                    <strong>
-                        Détails
-                    </strong>
-                </Button>
-              </TableCell>
+              
             </TableRow>
           )})}
         </TableBody>

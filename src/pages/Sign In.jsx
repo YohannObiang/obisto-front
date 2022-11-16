@@ -96,7 +96,6 @@ export default function SignIn() {
 
   const [Objets, setObjets] = useState([]);
   const [IdUser, setIdUser] = useState(0);
-  const [Motdepasse, setMotdepasse] = useState('ZingaClenn');
 
   useEffect(() => {
     getObjets();
@@ -104,7 +103,7 @@ export default function SignIn() {
 
 
   const getObjets = async () => {
-    var response = await axios.get("https://mocki.io/v1/e23eb0cf-8aa8-41f4-b82c-123db40eb9f2");
+    var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
     setObjets(response.data);
 
   };
@@ -113,9 +112,9 @@ export default function SignIn() {
   const Connexion = (e) => {
  
   for (let index = 0; index <= Objets.length+1; index++) {
-    const element1 = Objets[index].email_proprio;
-    const element2 = Objets[index].password;
-    const fromdb = element1+element2
+    const element1 = Objets[index];
+    const element2 = Objets[index];
+    const fromdb = element1.email_proprio+element2.password
     const frominput = user+pwd
     if(frominput === fromdb && index < Objets.length){
       setSuccess(true);
@@ -128,7 +127,7 @@ export default function SignIn() {
     }
 
     else{
-      document.getElementById('errMessage').innerHTML='<p>Identifiants rronés</p>'
+      document.getElementById('errMessage').innerHTML='<p>Identifiants erronés</p>'
     }
     
     

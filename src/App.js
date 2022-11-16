@@ -132,6 +132,8 @@ export default function PersistentDrawerLeft() {
 function reset (){
   document.getElementById('allcategorystuffs').style.display='grid';
   document.getElementById('somecategorystuffs').style.display='none';
+  handleDrawerClose()
+
 }
   return (
     <Box sx={{ display: 'flex' }}>
@@ -188,7 +190,7 @@ function reset (){
         <Divider />
         <List>
        
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Sono'); reset()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Sono'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -202,7 +204,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Caméra')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Caméra'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -216,7 +218,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Jeu vidéo')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Jeu vidéo'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -230,7 +232,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Téléphone')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Téléphone'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -244,7 +246,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Outil')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Outil'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
@@ -258,7 +260,7 @@ function reset (){
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Machine')}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Machine'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>

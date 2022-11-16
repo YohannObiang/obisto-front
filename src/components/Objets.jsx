@@ -7,7 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import FloatingActionButtons from './floatingbutton';
 import ScrollDialog from './modal';
 
 export default function Objets({Proprio}) {
@@ -24,10 +23,10 @@ export default function Objets({Proprio}) {
     setObjets(response.data);
 
   };
-
+  
 
   return (
-    <>
+    <div className='ObjetsDiv'>
     <TableContainer component={Paper}>
       <Table sx={{ width: '100%' }} aria-label="simple table">
         <TableHead>
@@ -59,6 +58,6 @@ export default function Objets({Proprio}) {
     <ScrollDialog
     id={id}
     />
-    </>
+    </div>
   );
 }

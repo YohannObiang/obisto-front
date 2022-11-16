@@ -104,9 +104,11 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
           <ThemeProvider theme={theme}>
 
         <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
+        <Link to="/Details">
         <div className="img"
         style={{backgroundImage:`URL(./images/${item.image1})`}}
-        ></div>
+        onClick={()=>Borrow(item.id_objet)}
+        ></div></Link>
         <CardContent>
 
         

@@ -87,7 +87,7 @@ export default function Dashboard({IdUser}) {
 
 useEffect(() => {
   getProprio();
-}, []);
+},[]);
 
 
 const getProprio = async () => {
@@ -95,6 +95,8 @@ const getProprio = async () => {
   setProprio(response.data[IdUser]);
 
 };
+
+
     const theme = createTheme({
         palette: {
           primary: {
@@ -128,11 +130,15 @@ const getProprio = async () => {
   function Commandes(){
     document.getElementById('Objets').style.display='none';
     document.getElementById('Commandes').style.display='inline';
+    setOpen(false);
+
 
   }
   function Objet(){
     document.getElementById('Commandes').style.display='none';
     document.getElementById('Objets').style.display='inline';
+    setOpen(false);
+
 
   }
 

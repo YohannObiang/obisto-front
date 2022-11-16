@@ -8,7 +8,7 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 
 export default function FloatingActionButtons({openpaper}) {
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+    <div style={{position: 'fixed', bottom:'45px', right:'20px'}}>
       <Fab color="secondary" aria-label="add" onClick={openpaper}>
         <AddIcon />
       </Fab>
@@ -22,6 +22,6 @@ export default function FloatingActionButtons({openpaper}) {
       <Fab disabled aria-label="like">
         <FavoriteIcon />
       </Fab> */}
-    </Box>
+    </div>
   );
 }

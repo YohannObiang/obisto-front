@@ -58,10 +58,13 @@ export default function ScrollDialog({id}) {
     image4: "image.png",
     image5: "image.png"
   }
+  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,prix_semaine:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:"image.png",image2:"image.png",image3:"image.png",image4:"image.png",image5:"image.png"}
+
 
   function handlepost(){
-    console.log(post)
-    axios.post('https://obistobackend.onrender.com/ajout/objet', post)
+    console.log(obj)
+    axios.post('https://obistobackend.onrender.com//ajout/objet', obj)
+    setOpen(false);
   }
 
 
@@ -69,7 +72,7 @@ export default function ScrollDialog({id}) {
     <div>
       {/* <Button >scroll=paper</Button>
       <Button onClick={handleClickOpen('body')}>scroll=body</Button> */}
-      <FloatingBtn openpaper={handleClickOpen('paper')}/>
+      <FloatingBtn className='floatingbtn' openpaper={handleClickOpen('paper')}/>
       <Dialog
         open={open}
         onClose={handleClose}

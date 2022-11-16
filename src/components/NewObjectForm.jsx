@@ -6,6 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import axios from 'axios';
 
 
 export default function NewObjectForm({
@@ -42,7 +43,22 @@ function prixsemaine(e){
   console.log(NomObjet, CategorieObjet, EtatObjet, CautionObjet, PrixJourObjet, PrixSemaineObjet)
 
 }
-  
+ 
+
+  const [image, setImage] = React.useState('')
+  function handleImage(e){
+
+    console.log(e.target.files)
+    setImage(e.target.files[0])
+
+  }
+  function handleApi(){
+    const formData = new FormData()
+    formData.append('image', image)
+    axios.post('http://localhost:3001/profile', formData).then((res)=>{
+      console.log(res)
+    })
+  }
 
 
   return (
@@ -78,9 +94,9 @@ function prixsemaine(e){
 
               >
                
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="Caméra">Caméra</MenuItem>
+                <MenuItem value="Machine">Machine</MenuItem>
+                <MenuItem value="Outil">Outil</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -97,9 +113,9 @@ function prixsemaine(e){
 
               >
                 
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                <MenuItem value="Excellent">Excellent</MenuItem>
+                <MenuItem value="Bon">Bon</MenuItem>
+                <MenuItem value="Assez bon">Assez bon</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -146,7 +162,8 @@ function prixsemaine(e){
 
 
           <Grid item xs={12}>
-          <input type="file" name="" id="" />
+          <input onChange={handleImage} type="file" name="" id="" />
+          <button onClick={handleApi}>click</button>
           </Grid>
 
           <Grid item xs={12}>
