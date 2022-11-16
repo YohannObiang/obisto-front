@@ -5,8 +5,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import FloatingBtn from './floatingbutton';
+import NewObjectForm from './NewObjectForm';
+import axios from 'axios';
 
-export default function ScrollDialog() {
+export default function ScrollDialog({id}) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -29,10 +32,48 @@ export default function ScrollDialog() {
     }
   }, [open]);
 
+  const handleSubmit = (event) => {
+    
+    setOpen(false);
+
+  };
+
+  const [NomObjet, setNomObjet] = React.useState('');
+  const [CategorieObjet, setCategorieObjet] = React.useState('');
+  const [EtatObjet, setEtatObjet] = React.useState('');
+  const [CautionObjet, setCautionObjet] = React.useState('');
+  const [PrixJourObjet, setPrixJourObjet] = React.useState('');
+  const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState('');
+  const Datedajout = new Date()
+  const post = {
+
+    objet: NomObjet,
+    caution: CautionObjet,
+    etat: EtatObjet,
+    prix_jour: PrixJourObjet,
+    prix_semaine: PrixSemaineObjet,
+    Categorie: CategorieObjet,
+    id_proprietaire: id,
+    statut: "Disponible",
+    date_dajout: Datedajout.toLocaleDateString(),
+    image1: "image.png",
+    image2: "image.png",
+    image3: "image.png",
+    image4: "image.png",
+    image5: "image.png"
+  }
+
+  function handlepost(){
+    console.log(post)
+    axios.post('https://obistobackend.onrender.com/ajout/objet', post)
+  }
+
+
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
-      <Button onClick={handleClickOpen('body')}>scroll=body</Button>
+      {/* <Button >scroll=paper</Button>
+      <Button onClick={handleClickOpen('body')}>scroll=body</Button> */}
+      <FloatingBtn openpaper={handleClickOpen('paper')}/>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -47,19 +88,26 @@ export default function ScrollDialog() {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-              )
-              .join('\n')}
+            <NewObjectForm
+            setNomObjet={setNomObjet} 
+            setCategorieObjet={setCategorieObjet}
+            setEtatObjet={setEtatObjet}
+            setCautionObjet={setCautionObjet}
+            setPrixJourObjet={setPrixJourObjet}
+            setPrixSemaineObjet={setPrixSemaineObjet}
+
+            NomObjet={NomObjet} 
+            CategorieObjet={CategorieObjet}
+            EtatObjet={EtatObjet}
+            CautionObjet={CautionObjet}
+            PrixJourObjet={PrixJourObjet}
+            PrixSemaineObjet={PrixSemaineObjet}
+            />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handlepost}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>

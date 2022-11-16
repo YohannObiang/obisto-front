@@ -247,7 +247,10 @@ const getProprio = async () => {
         </div>
         <div id="Objets">
             <h2>Objets</h2>
-            <Objets Proprio={Proprio}/>
+            <Objets 
+            Proprio={Proprio}
+            id={id}
+            />
 
         </div>
         </Main>

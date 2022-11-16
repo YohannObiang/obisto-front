@@ -6,26 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
 import axios from 'axios';
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-
-
-const rows = [
-  createData(1, 3, 5, 1, "18-09-2022"),
-  createData(4, 9, 1, 1, "18-09-2022"),
-  createData(2, 12, 16, 2, "18-09-2022"),
-  createData(8, 3, 3, 1, "18-09-2022"),
-  createData(13, 6, 6, 1, "18-09-2022"),
-];
+import FloatingActionButtons from './floatingbutton';
+import ScrollDialog from './modal';
 
 export default function Objets({Proprio}) {
 
@@ -37,13 +20,14 @@ export default function Objets({Proprio}) {
 
   var id = String(Proprio.id_proprietaire)
   const getObjets = async () => {
-    var response = await axios.get(`http://localhost:3001/proprietaires/objets/${id}`);
+    var response = await axios.get(`https://obistobackend.onrender.com/proprietaires/objets/${id}`);
     setObjets(response.data);
 
   };
 
 
   return (
+    <>
     <TableContainer component={Paper}>
       <Table sx={{ width: '100%' }} aria-label="simple table">
         <TableHead>
@@ -72,5 +56,9 @@ export default function Objets({Proprio}) {
         </TableBody>
       </Table>
     </TableContainer>
+    <ScrollDialog
+    id={id}
+    />
+    </>
   );
 }
