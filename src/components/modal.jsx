@@ -32,11 +32,7 @@ export default function ScrollDialog({id}) {
     }
   }, [open]);
 
-  const handleSubmit = (event) => {
-    
-    setOpen(false);
-
-  };
+  
 
   const [NomObjet, setNomObjet] = React.useState('');
   const [CategorieObjet, setCategorieObjet] = React.useState('');
@@ -52,7 +48,7 @@ export default function ScrollDialog({id}) {
     etat: EtatObjet,
     prix_jour: PrixJourObjet,
     prix_semaine: PrixSemaineObjet,
-    Categorie: CategorieObjet,
+    categorie: CategorieObjet,
     id_proprietaire: id,
     statut: "Disponible",
     date_dajout: Datedajout.toLocaleDateString(),
