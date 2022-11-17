@@ -86,7 +86,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  localStorage.setItem('login', '/Ajouter-un-article')
+  localStorage.setItem('loggedin', '/loggedoff')
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -103,7 +104,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/objets");
+    var response = await axios.get("http://192.168.43.241:3001/objets");
     setObjets(response.data);
 
   };
@@ -125,16 +126,14 @@ export default function PersistentDrawerLeft() {
   const [Borrowed, setBorrowed] = useState('');
   const [SingleObject, setSingleObject] = useState({});
   const [IdCategorie, setIdCategorie] = useState('');
-  const [ObjectCategorie, setObjectCategorie] = useState([]);
+  const [login, setlogin] = useState(localStorage.getItem('login'));
+  const [loggedin, setloggedin] = useState(localStorage.getItem('loggedin'));
   const [SearchTerm, setSearchTerm] = useState("");
 
   
-function reset (){
-  document.getElementById('allcategorystuffs').style.display='grid';
-  document.getElementById('somecategorystuffs').style.display='none';
-  handleDrawerClose()
 
-}
+
+
   return (
     <Box sx={{ display: 'flex' }}>
               <BrowserRouter>
@@ -298,7 +297,8 @@ function reset (){
         IdCategorie = {IdCategorie}
         setBorrowed={setBorrowed}
         />} /> 
-        <Route path="/Ajouter-un-article" element={<SignIn/>} /> 
+        <Route path={login} element={<SignIn setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path={loggedin} element={<Dashboard setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}

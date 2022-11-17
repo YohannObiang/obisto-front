@@ -27,9 +27,8 @@ const rows = [
   createData(13, 6, 6, 1, "18-09-2022"),
 ];
 
-export default function Orders({orders}) {
+export default function Orders({commandespropio}) {
 
-    var id = orders[0]
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: '100vw' }} aria-label="simple table">
@@ -42,7 +41,7 @@ export default function Orders({orders}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((row) => {
+          {commandespropio.map((row) => {
           
        
 

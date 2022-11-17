@@ -44,10 +44,10 @@ const LatestOffers = ({ setBorrowed}) => {
 
   React.useEffect(() => {
     getObjets();
-  });
+  },[]);
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/objets");
+    var response = await axios.get("http://192.168.43.241:3001/objets");
     setObjets(response.data);
 
   };

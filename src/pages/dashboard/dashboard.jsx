@@ -81,20 +81,54 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({IdUser}) {
+export default function Dashboard({IdUser, setlogin, setloggedin}) {
 
     const [Proprio, setProprio] = useState([]);
+    const [id, setId] = useState(0);
 
 useEffect(() => {
   getProprio();
 },[]);
+console.log(Proprio)
 
+
+const [items, setitems] = React.useState([]);
+const [commandes, setcommandes] = React.useState([]);
+
+
+ 
+useEffect(() => {
+  getitems();
+},[]);
+
+ 
+
+
+    const getitems = async () => {
+      var response = await axios.get(`http://192.168.43.241:3001/objets`);
+      var allcommandes = await axios.get(`http://192.168.43.241:3001/commandes`);
+    
+        setitems(response.data);
+        setcommandes(allcommandes.data)
+ };
+ var commandespropio = commandes.filter((element,index)=>{
+  return element.id_proprietaire === id})
+  console.log(commandespropio)
+
+ var data = items.filter((element,index)=>{
+  return element.id_proprietaire === id})
+ console.log(data)
+ console.log(id)
 
 const getProprio = async () => {
-  var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
+  var response = await axios.get("http://192.168.43.241:3001/proprietaires");
   setProprio(response.data[IdUser]);
+  setId(response.data[IdUser].id_proprietaire)
 
 };
+
+
+
 
 
     const theme = createTheme({
@@ -124,6 +158,8 @@ const getProprio = async () => {
   const logout = () => {
 
     document.getElementById('appbar').style.display="inline";
+    setloggedin('/loggedoff')
+    setlogin('/Ajouter-un-article')
 
   }
   
@@ -142,29 +178,23 @@ const getProprio = async () => {
 
   }
 
-  const [items, setitems] = React.useState([]);
+  
 
-  var id=String(Proprio.id_proprietaire)
+  
+    
+    
 
-  React.useEffect(() => {
-    getitems();
-  });
 
-  const getitems = async () => {
-    var response = await axios.get(`https://obistobackend.onrender.com/proprietaires/objets/${id}`);
-    setitems(response.data);
-
-  };
 
   const [orders, setOrders] = React.useState([]);
 
 
   React.useEffect(() => {
     getOrders();
-  });
+  },[]);
 
   const getOrders = async () => {
-    var response = await axios.get(`https://obistobackend.onrender.com/commandes/proprietaire/${id}`);
+    var response = await axios.get(`http://192.168.43.241:3001/commandes/proprietaire/${id}`);
     setOrders(response.data);
 
   };
@@ -187,8 +217,10 @@ const getProprio = async () => {
                 </IconButton>
 
 
-                <img  src={logo} alt="" />
-            </div>
+                <Link to="/">
+
+<img  src={logo} alt="" />
+</Link>            </div>
             <Link to="/" >
                 <Button size='small' color='primary' onClick={logout}> 
                 <strong>
@@ -249,13 +281,14 @@ const getProprio = async () => {
             <DrawerHeader />
         <div id="Commandes">
             <h2>Commandes</h2>
-            <Orders orders={orders}/>
+            <Orders commandespropio={commandespropio}/>
         </div>
         <div id="Objets">
             <h2>Objets</h2>
             <Objets 
-            Proprio={Proprio}
             id={id}
+            getitems={getitems}
+            data={data}
             />
 
         </div>

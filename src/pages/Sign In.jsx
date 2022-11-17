@@ -38,11 +38,10 @@ const theme = createTheme({
     },
   },
 });
-export default function SignIn() {
+export default function SignIn({setlogin, setloggedin}) {
   const {setAuth} = useContext(AuthContext)
   const userRef = useRef();
   const errRef = useRef();
-
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
@@ -103,7 +102,7 @@ export default function SignIn() {
 
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
+    var response = await axios.get("http://192.168.43.241:3001/proprietaires");
     setObjets(response.data);
 
   };
@@ -119,7 +118,11 @@ export default function SignIn() {
     if(frominput === fromdb && index < Objets.length){
       setSuccess(true);
       alert("Bienvenue "+Objets[index].nom+ " " +Objets[index].prenom)
-
+      localStorage.clear()
+      localStorage.setItem('loggedin', '/Ajouter-un-article')
+      localStorage.setItem('login', '/loggedoff')
+      setloggedin('/Ajouter-un-article')
+      setlogin('/loggedoff')
       setIdUser(index)
       break
 

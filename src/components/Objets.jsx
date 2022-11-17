@@ -9,20 +9,9 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import ScrollDialog from './modal';
 
-export default function Objets({Proprio}) {
+export default function Objets({getitems, data,id}) {
 
-  const [Objets, setObjets] = React.useState([]);
 
-  React.useEffect(() => {
-    getObjets();
-  });
-
-  var id = String(Proprio.id_proprietaire)
-  const getObjets = async () => {
-    var response = await axios.get(`https://obistobackend.onrender.com/proprietaires/objets/${id}`);
-    setObjets(response.data);
-
-  };
   
 
   return (
@@ -38,7 +27,7 @@ export default function Objets({Proprio}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Objets.map((row) => (
+          {data.map((row) => (
             <TableRow
               key={row.id_objet}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -57,6 +46,7 @@ export default function Objets({Proprio}) {
     </TableContainer>
     <ScrollDialog
     id={id}
+    getitems={getitems}
     />
     </div>
   );

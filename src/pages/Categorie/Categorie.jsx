@@ -33,11 +33,11 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
 
   React.useEffect(() => {
     getObjets();
-  });
+  },[]);
  
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/objets");
+    var response = await axios.get("http://localhost:3001/objets");
     setObjets(response.data);
 
   };
@@ -103,7 +103,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
 
         <div className="container">
         <h2>{IdCategorie}</h2>
-        <div className="filter">
+        {/* <div className="filter">
 
              <select name="" id="price"  onChange={handleChangePrix}>
                 <option value={0}>--- Prix --- (fcfa)</option>
@@ -116,12 +116,11 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
             </select>
             
 
-        </div>
+        </div> */}
         <div id='allcategorystuffs' className="LatestOffers">
         {filteredstuffs.map((item) => {
 
 
-// var cate = filteredstuffs
 
               return(
                 <div key={item.id_objet} className='object'>

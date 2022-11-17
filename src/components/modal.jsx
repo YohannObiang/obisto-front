@@ -9,7 +9,7 @@ import FloatingBtn from './floatingbutton';
 import NewObjectForm from './NewObjectForm';
 import axios from 'axios';
 
-export default function ScrollDialog({id}) {
+export default function ScrollDialog({id, getitems}) {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -41,30 +41,18 @@ export default function ScrollDialog({id}) {
   const [PrixJourObjet, setPrixJourObjet] = React.useState('');
   const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState('');
   const Datedajout = new Date()
-  const post = {
 
-    objet: NomObjet,
-    caution: CautionObjet,
-    etat: EtatObjet,
-    prix_jour: PrixJourObjet,
-    prix_semaine: PrixSemaineObjet,
-    categorie: CategorieObjet,
-    id_proprietaire: id,
-    statut: "Disponible",
-    date_dajout: Datedajout.toLocaleDateString(),
-    image1: "image.png",
-    image2: "image.png",
-    image3: "image.png",
-    image4: "image.png",
-    image5: "image.png"
-  }
   const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,prix_semaine:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:"image.png",image2:"image.png",image3:"image.png",image4:"image.png",image5:"image.png"}
 
 
   function handlepost(){
     console.log(obj)
-    axios.post('https://obistobackend.onrender.com//ajout/objet', obj)
+    axios.post('http://192.168.43.241:3001/ajout/objet', obj).then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
     setOpen(false);
+    getitems()
   }
 
 
@@ -105,8 +93,8 @@ export default function ScrollDialog({id}) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handlepost}>Subscribe</Button>
+          <Button onClick={handleClose}>Annuler</Button>
+          <Button onClick={handlepost}>Ajouter</Button>
         </DialogActions>
       </Dialog>
     </div>
