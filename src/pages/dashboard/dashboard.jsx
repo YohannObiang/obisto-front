@@ -81,15 +81,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({IdUser, setlogin, setloggedin}) {
+export default function Dashboard({IdUser, setIdUser, setlogin, setloggedin}) {
 
     const [Proprio, setProprio] = useState([]);
     const [id, setId] = useState(0);
 
-useEffect(() => {
-  getProprio();
-},[]);
-console.log(Proprio)
 
 
 const [items, setitems] = React.useState([]);
@@ -102,32 +98,37 @@ useEffect(() => {
 },[]);
 
  
+console.log(localStorage.getItem('proprio'))
 
 
     const getitems = async () => {
       var response = await axios.get(`http://192.168.43.241:3001/objets`);
       var allcommandes = await axios.get(`http://192.168.43.241:3001/commandes`);
-    
         setitems(response.data);
         setcommandes(allcommandes.data)
  };
- var commandespropio = commandes.filter((element,index)=>{
-  return element.id_proprietaire === id})
-  console.log(commandespropio)
-
- var data = items.filter((element,index)=>{
-  return element.id_proprietaire === id})
- console.log(data)
- console.log(id)
+ 
 
 const getProprio = async () => {
   var response = await axios.get("http://192.168.43.241:3001/proprietaires");
-  setProprio(response.data[IdUser]);
-  setId(response.data[IdUser].id_proprietaire)
+  console.log(response.data[IdUser]);
+  setProprio(response.data[localStorage.getItem('proprio')]);
+
 
 };
 
+useEffect(() => {
+  getProprio();
+},[]);
+console.log(Proprio)
+var commandespropio = commandes.filter((element,index)=>{
+  return element.id_proprietaire === Proprio.id_proprietaire})
+  console.log(commandespropio)
 
+ var data = items.filter((element,index)=>{
+  return element.id_proprietaire === Proprio.id_proprietaire})
+ console.log(items)
+ console.log(id)
 
 
 
@@ -219,7 +220,7 @@ const getProprio = async () => {
 
                 <Link to="/">
 
-<img  src={logo} alt="" />
+<img  src={logo} alt="" onClick={()=>{document.getElementById('appbar').style.display="inline";}} />
 </Link>            </div>
             <Link to="/" >
                 <Button size='small' color='primary' onClick={logout}> 

@@ -8,6 +8,9 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 const Avantages = () => {
     return ( 
         <div className='Avantages'>
+            <h2>Avantages
+                
+            </h2>
             <div className="avantages">
                 <div className="avantage">
                     <div className="circleadvantage">

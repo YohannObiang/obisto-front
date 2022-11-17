@@ -94,7 +94,7 @@ export default function SignIn({setlogin, setloggedin}) {
   }
 
   const [Objets, setObjets] = useState([]);
-  const [IdUser, setIdUser] = useState(0);
+  const [IdUser, setIdUser] = useState(String(localStorage.getItem('proprio')));
 
   useEffect(() => {
     getObjets();
@@ -113,6 +113,7 @@ export default function SignIn({setlogin, setloggedin}) {
   for (let index = 0; index <= Objets.length+1; index++) {
     const element1 = Objets[index];
     const element2 = Objets[index];
+
     const fromdb = element1.email_proprio+element2.password
     const frominput = user+pwd
     if(frominput === fromdb && index < Objets.length){
@@ -123,7 +124,7 @@ export default function SignIn({setlogin, setloggedin}) {
       localStorage.setItem('login', '/loggedoff')
       setloggedin('/Ajouter-un-article')
       setlogin('/loggedoff')
-      setIdUser(index)
+      localStorage.setItem('proprio', index)
       break
 
 
@@ -136,6 +137,8 @@ export default function SignIn({setlogin, setloggedin}) {
     
   }
 }
+console.log(IdUser)
+console.log(localStorage.getItem('proprio'))
 
 
 
@@ -144,7 +147,7 @@ export default function SignIn({setlogin, setloggedin}) {
     <>
     {success ? (
         <section>
-            <Dashboard IdUser={IdUser}/>
+            <Dashboard setIdUser={setIdUser} IdUser={IdUser}/>
         </section>
     ) : (
 

@@ -93,8 +93,12 @@ function prixsemaine(e){
                 value={CategorieObjet}
 
               >
-               
+
+                <MenuItem value="Sono">Sono</MenuItem>
                 <MenuItem value="Caméra">Caméra</MenuItem>
+                <MenuItem value="Jeu vidéo">Jeu vidéo</MenuItem>
+                <MenuItem value="Téléphone">Téléphone</MenuItem>
+               
                 <MenuItem value="Machine">Machine</MenuItem>
                 <MenuItem value="Outil">Outil</MenuItem>
               </Select>
