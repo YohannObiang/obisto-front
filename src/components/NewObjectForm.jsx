@@ -57,7 +57,7 @@ function prixsemaine(e){
   function handleApi(){
     const formData = new FormData()
     formData.append('image', image)
-    axios.post('http://localhost:4000/uploadfile', formData).then((res)=>{
+    axios.post('https://photouploadobisto.onrender.com/uploadfile', formData).then((res)=>{
       console.log(res)
     })
   }

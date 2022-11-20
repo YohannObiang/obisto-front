@@ -131,10 +131,10 @@ export default function CheckoutForm({Borrowed}) {
 }
 
   function post(){
-    axios.post('http://localhost:3001/ajout/commande', commande).then(res => {
+    axios.post('https://obistobackend.onrender.com/ajout/commande', commande).then(res => {
       console.log(res);
       console.log(res.data);
-      alert("Votre commandes a été éffectuée avec succès !")
+      alert("Votre commande a été éffectuée avec succès !")
     console.log(commande)
   })}
 

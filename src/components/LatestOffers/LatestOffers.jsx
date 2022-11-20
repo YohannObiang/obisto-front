@@ -51,7 +51,7 @@ const LatestOffers = ({ setBorrowed}) => {
   },[]);
 
   const getObjets = async () => {
-    var response = await axios.get("http://localhost:3001/objets");
+    var response = await axios.get("https://obistobackend.onrender.com/objets");
     setObjets(response.data);
 
   };
