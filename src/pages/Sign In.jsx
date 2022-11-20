@@ -102,7 +102,7 @@ export default function SignIn({setlogin, setloggedin}) {
 
 
   const getObjets = async () => {
-    var response = await axios.get("http://192.168.43.241:3001/proprietaires");
+    var response = await axios.get("http://localhost:3001/proprietaires");
     setObjets(response.data);
 
   };
@@ -113,7 +113,7 @@ export default function SignIn({setlogin, setloggedin}) {
   for (let index = 0; index <= Objets.length+1; index++) {
     const element1 = Objets[index];
     const element2 = Objets[index];
-
+    console.log(Objets)
     const fromdb = element1.email_proprio+element2.password
     const frominput = user+pwd
     if(frominput === fromdb && index < Objets.length){
@@ -171,6 +171,8 @@ console.log(localStorage.getItem('proprio'))
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
+              variant="standard"
+
               required
               fullWidth
               id="email"
@@ -184,13 +186,15 @@ console.log(localStorage.getItem('proprio'))
             />
             <TextField
               margin="normal"
+              variant="standard"
+
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
-              autoComplete="current-password"
+              autoComplete="new-password"
               onChange={(e)=> setPwd(e.target.value)}
               value={pwd}
             />

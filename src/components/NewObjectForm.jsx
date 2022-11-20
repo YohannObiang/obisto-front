@@ -9,9 +9,11 @@ import Select from '@mui/material/Select';
 import axios from 'axios';
 
 
+
 export default function NewObjectForm({
   setNomObjet, setCategorieObjet, setEtatObjet, setCautionObjet, setPrixJourObjet, setPrixSemaineObjet,
-  NomObjet, CategorieObjet, EtatObjet, CautionObjet, PrixJourObjet, PrixSemaineObjet
+  NomObjet, CategorieObjet, EtatObjet, CautionObjet, PrixJourObjet, PrixSemaineObjet,onChangeFile,onChangeFile2,
+  onChangeFile3, onChangeFile4, onChangeFile5
 }) {
 function nom(e){
   setNomObjet(e.target.value)
@@ -55,7 +57,7 @@ function prixsemaine(e){
   function handleApi(){
     const formData = new FormData()
     formData.append('image', image)
-    axios.post('http://localhost:3001/profile', formData).then((res)=>{
+    axios.post('http://localhost:4000/uploadfile', formData).then((res)=>{
       console.log(res)
     })
   }
@@ -155,7 +157,7 @@ function prixsemaine(e){
             required
             fullWidth
             id="prix_semaine"
-            label="Prix hebdomadaire"
+            label="Description"
             name="prix_semaine"
             variant="standard"
             onChange={prixsemaine}
@@ -166,24 +168,23 @@ function prixsemaine(e){
 
 
           <Grid item xs={12}>
-          <input onChange={handleImage} type="file" name="" id="" />
-          <button onClick={handleApi}>click</button>
+          <input onChange={onChangeFile} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12}>
-          <input type="file" name="" id="" />
+          <input onChange={onChangeFile2} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12}>
-          <input type="file" name="" id="" />
+          <input onChange={onChangeFile3} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12}>
-          <input type="file" name="" id="" />
+          <input onChange={onChangeFile4} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12}>
-          <input type="file" name="" id="" />
+          <input onChange={onChangeFile5} type="file" name="" id="" />
           </Grid>
 
 

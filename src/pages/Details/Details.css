@@ -33,7 +33,7 @@ select{
     transition: 0.1s;
 }
 .description{
-    height: 83%;
+    height: 84px;
     width: 100%;
 }
 .cardDetails{

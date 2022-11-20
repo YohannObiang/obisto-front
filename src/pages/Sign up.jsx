@@ -62,7 +62,7 @@ export default function SignUp() {
     //   setmsg('Felicitations vous')
     // }
     setname(data.get('firstName'))
-    axios.post('http://192.168.43.241:3001/ajout/proprietaire', post).then(res => {
+    axios.post('http://localhost:3001/ajout/proprietaire', post).then(res => {
 
       console.log(res);
       if(String(res.data)==="POSTED"){
@@ -159,7 +159,7 @@ export default function SignUp() {
             </Grid>
             <br /><br />
             <Grid item xs={12}>
-              <label for='endDate' className='labeldate'>A:  <input type="date" name="endDate" defaultValue={Date} onChange={handleDate} id="endDate" /></label>
+              <label for='endDate' className='labeldate'><input type="date" name="endDate" defaultValue={Date} onChange={handleDate} id="endDate" /></label>
               <Divider/>
             </Grid>
               <Grid item xs={12}>

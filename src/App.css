@@ -23,6 +23,12 @@
   border-top-right-radius: 5px ;
   border-bottom-right-radius: 5px ;
 }
+#accountinfos{
+  display:none
+}
+#Settings{
+  display:none
+}
 #login{
   display: none;
 }
@@ -139,7 +145,7 @@ margin: auto;
 .slideimg{
 margin: auto;
 height: 400px;
-width: 500px;
+width: 100px;
 background: #000;
 display:flex;
 align-items:center;

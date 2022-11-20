@@ -5,6 +5,7 @@ import Avantages from "../components/Avantages";
 import LatestOffers from '../components/LatestOffers/LatestOffers'
 import Process from "../components/Process/Process";
 import ScrollDialog from "../components/modal";
+import Upload from "./upload";
 
 
 const Home = ({Objets, setSearchTerm,handleSearchTerm, setBorrowed}) => {

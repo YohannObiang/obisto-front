@@ -40,6 +40,10 @@ const LatestOffers = ({ setBorrowed}) => {
 
 
   };
+
+
+
+  
   const [Objets, setObjets] = React.useState([]);
 
   React.useEffect(() => {
@@ -47,13 +51,11 @@ const LatestOffers = ({ setBorrowed}) => {
   },[]);
 
   const getObjets = async () => {
-    var response = await axios.get("http://192.168.43.241:3001/objets");
+    var response = await axios.get("http://localhost:3001/objets");
     setObjets(response.data);
 
   };
   var lastAdded = Objets.slice().splice(Objets.length-8).reverse();
-  // illustration.src = require("../../assets/image.png");
-  // document.querySelector('.img').require('../../assets/image.png')
 
      return ( 
 
@@ -75,7 +77,7 @@ const LatestOffers = ({ setBorrowed}) => {
         <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
         <Link to="/Details">
         <div className="img"
-        style={{backgroundImage:`URL(./images/${item.image1})`}}
+        style={{backgroundImage:`URL(${ item.image1})`}}
         onClick={()=>Borrow(item.id_objet)}
         ></div></Link>
         <CardContent>

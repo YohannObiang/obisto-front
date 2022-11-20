@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import Payment from './Payment';
+import axios from 'axios';
 // import Review from './Review';
 
 
@@ -93,6 +94,50 @@ export default function CheckoutForm({Borrowed}) {
     setActiveStep(activeStep - 1);
   };
 
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+  function formatDate(date){
+  return[
+    padTo2Digits(date.getDate()),
+    padTo2Digits(date.getMonth() + 1),
+    date.getFullYear(),
+  ].join('/');
+  
+  }
+  
+  var debut = formatDate(new Date(StartDate));
+  var fin = formatDate(new Date(EndDate));
+  var code = Math.floor(Math.random()*9999)
+
+
+  const datedecommande = new Date()
+  const commande = {
+  id_objet: Borrowed.id_objet,
+  objet: Borrowed.objet,
+  date_debut: debut,
+  date_fin: fin,
+  periode: BorrowPeriod,
+  prix_total: parseInt(Borrowed.prix_jour)*BorrowPeriod,
+  nom_destinataire: Nom,
+  prenom_destinataire: Prenom,
+  email: Email,
+  phone: Phone,
+  quartier: Quartier,
+  id_proprietaire: Borrowed.id_proprietaire,
+  date_de_commande:  datedecommande.toLocaleDateString(),
+  statut: "En attente",
+  code: parseInt(`${code}`+`${Borrowed.id_objet}`)
+}
+
+  function post(){
+    axios.post('http://localhost:3001/ajout/commande', commande).then(res => {
+      console.log(res);
+      console.log(res.data);
+      alert("Votre commandes a été éffectuée avec succès !")
+    console.log(commande)
+  })}
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -117,7 +162,7 @@ export default function CheckoutForm({Borrowed}) {
               <Typography variant="subtitle1">
                 Afin de valider votre commande auprès du proprietaire, vous serez redirigé vers <strong>e-Billing</strong> pour effectuer le paiement de celle-ci.
               </Typography>
-                  <Button  sx={{ mt: 3, ml: 0 }}>
+                  <Button  sx={{ mt: 3, ml: 0 }} onClick={post}>
                     Continuer
                   </Button>
             </React.Fragment>

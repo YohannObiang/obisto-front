@@ -82,11 +82,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
+export default function Dashboardmaj({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
 
     const [Proprio, setProprio] = useState([]);
-
-
+    setlinkreset('Ajouter-un-article')
 
 const [items, setitems] = React.useState([]);
 const [commandes, setcommandes] = React.useState([]);
@@ -229,7 +228,6 @@ console.log(Proprio)
 
 
 
-  setlinkreset('Ajouter-un-article/maj')
 
   return (
     <Box sx={{ display: 'flex' }}>

@@ -26,16 +26,19 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Home from './pages/Home';
 import SignIn from './pages/Sign In';
 import SignUp from './pages/Sign up';
+import Tooltip from '@mui/material/Tooltip';
 import Footer from './components/footer/Footer';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Link } from "react-router-dom";
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import InboxIcon from '@mui/icons-material/Inbox';
 import Details from './pages/Details/Details';
 import FilterResult from './pages/FilterResult/FilterResult'
 import Categorie from './pages/Categorie/Categorie';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import CheckoutForm from './components/CheckoutForm';
+import Dashboardmaj from './pages/dashboard/dashboard copy';
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -94,6 +97,7 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+    setBack('categorie')
   };
   // Get all my stuffs
 
@@ -104,14 +108,14 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getObjets = async () => {
-    var response = await axios.get("http://192.168.43.241:3001/objets");
+    var response = await axios.get("http://localhost:3001/objets");
     setObjets(response.data);
 
   };
   const [filteredstuffs, setfilteredstuffs] = useState([]);
 
   const handleSearchTerm = () => {
-    
+    setBack('recherche')
     if(SearchTerm.length > 0){
     var filtered = Objets.filter(item => item.objet.toLowerCase().includes(SearchTerm.toLowerCase()));
     console.log(filtered)
@@ -129,7 +133,35 @@ export default function PersistentDrawerLeft() {
   const [login, setlogin] = useState(localStorage.getItem('login'));
   const [loggedin, setloggedin] = useState(localStorage.getItem('loggedin'));
   const [SearchTerm, setSearchTerm] = useState("");
+  const [Back, setBack] = useState("accueil");
+  const [linkreset, setlinkreset] = React.useState('Ajouter-un-article');
 
+  const [commandes, setcommandes] = useState([]);
+
+  useEffect(() => {
+    getcommandes();
+  }, []);
+
+  const getcommandes = async () => {
+    var response = await axios.get("http://localhost:3001/commandes");
+    setcommandes(response.data);
+
+  };
+
+  function Tracking(){
+    handleDrawerClose()
+    var code = prompt("Veuillez saisir votre code commande")
+    for (let index = 0; index < commandes.length+1; index++) {
+      if( commandes[index].code == code){
+        console.log('Found out')
+        break
+      }
+      if(index = commandes.length+1 && commandes[index].code == code) {
+        console.log('Error')
+        break
+      }
+  }
+}
   
 
 
@@ -142,6 +174,7 @@ export default function PersistentDrawerLeft() {
       <AppBar position="fixed" open={open} id='appbar'>
         <Toolbar className='Topbar'>
           <div className='Topbar'>
+          <Tooltip title="Menu">
             <IconButton
               aria-label="open drawer"
               onClick={handleDrawerOpen}
@@ -150,20 +183,23 @@ export default function PersistentDrawerLeft() {
             >
               <MenuIcon sx={{color:'#262D44'}}/>
             </IconButton>
+            </Tooltip>
 
-            <Link to="/">
+            <Link to="/accueil" onClick={()=>{setBack('accueil')}}>
 
             <img  src={logo} alt="" />
             </Link>
           </div>
           <Link to="/Ajouter-un-article">
-
+          <Tooltip title="Mettre un objet en location">
           <IconButton
             color="inherit"
             sx={{width:'fit-content'}}
           >
             <DiscountIcon sx={{color:'#262D44'}}/>
           </IconButton>
+          </Tooltip>
+
           </Link>
         </Toolbar>
         
@@ -275,11 +311,35 @@ export default function PersistentDrawerLeft() {
 
         
         </List>
+        <br/> <br/>
+
+        <Divider/>
+        <List>
+       
+
+            <ListItem disablePadding>
+              <ListItemButton onClick={Tracking}>
+                <ListItemIcon>
+                  <InboxIcon sx={{color:'#262D44'}}/>
+                </ListItemIcon>
+           
+                Suivi de commande
+                
+              </ListItemButton>
+            </ListItem>
+        </List>
+
       </Drawer>
       <Main open={open} >
         <DrawerHeader />
       <Routes>
         <Route path="/" element={<Home 
+        Objets = {Objets} 
+        setSearchTerm={setSearchTerm}
+        handleSearchTerm={handleSearchTerm}
+        setBorrowed={setBorrowed}
+        />} /> 
+        <Route path="/accueil" element={<Home 
         Objets = {Objets} 
         setSearchTerm={setSearchTerm}
         handleSearchTerm={handleSearchTerm}
@@ -291,6 +351,7 @@ export default function PersistentDrawerLeft() {
         setfilteredstuffs={setfilteredstuffs}
         setBorrowed={setBorrowed}
         setSingleObject={setSingleObject}
+        setBack={setBack}
 
         />} /> 
         <Route path="/categorie" element={<Categorie 
@@ -298,16 +359,18 @@ export default function PersistentDrawerLeft() {
         setBorrowed={setBorrowed}
         />} /> 
         <Route path={login} element={<SignIn setlogin={setlogin} setloggedin={setloggedin}/>} /> 
-        <Route path={loggedin} element={<Dashboard setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path={loggedin} element={<Dashboard linkreset={linkreset} setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path="/Ajouter-un-article/maj" element={<Dashboardmaj  linkreset={linkreset}   setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}
+        Back={Back}
         />} /> 
         <Route path="/Validation" element={<CheckoutForm
          Borrowed={Borrowed}
         />} /> 
       </Routes>
-        <Footer/>
+        {/* <Footer/> */}
       </Main>
       </BrowserRouter>
 

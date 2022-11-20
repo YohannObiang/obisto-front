@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import ScrollDialog from './modal';
+import Dropmenu from './Dropmenu'
 
 export default function Objets({getitems, data,id}) {
 
@@ -24,6 +25,7 @@ export default function Objets({getitems, data,id}) {
             <TableCell align="center">Objet</TableCell>
             <TableCell align="center">Catégorie</TableCell>
             <TableCell align="center">Statut</TableCell>
+            <TableCell align="center" sx={{ width: '50px' }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -38,6 +40,8 @@ export default function Objets({getitems, data,id}) {
               <TableCell align="center">{row.objet}</TableCell>
               <TableCell align="center">{row.Categorie}</TableCell>
               <TableCell align="center">{row.statut}</TableCell>
+              <TableCell align="center"><Dropmenu/></TableCell>
+                
               
             </TableRow>
           ))}

@@ -13,6 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import Commanddetails from './Commanddetails';
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
@@ -27,35 +28,47 @@ const rows = [
   createData(13, 6, 6, 1, "18-09-2022"),
 ];
 
-export default function Orders({commandespropio}) {
+export default function Orders({commandespropio, setOrders, linkreset}) {
 
+const [commande, setCommande] = React.useState([])
+
+  const Borrow=(id_commande)=>{
+    const choosenOne=commandespropio.filter((element,index)=>{
+      return element.id_commande === id_commande});
+      setCommande(choosenOne[0])
+
+
+  };
+  var lastAdded = commandespropio.slice().reverse();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: '100vw' }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Id commandes</TableCell>
+            <TableCell align="center">Id</TableCell>
             <TableCell align="center">Objet</TableCell>
             <TableCell align="center">Dates</TableCell>
             <TableCell align="center">Statut</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {commandespropio.map((row) => {
+          {lastAdded.map((row) => {
           
-       
+            
 
           return(
             <TableRow
               key={row.id_commande}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" align="center" scope="row">
                 {row.id_commande}
               </TableCell>
-              <TableCell align="center">{row.id_ojet}</TableCell>
+              <TableCell align="center">{row.objet}</TableCell>
               <TableCell align="center">{row.date_de_commande}</TableCell>
               <TableCell align="center">{row.statut}</TableCell>
+              <TableCell align="center"><Commanddetails linkreset={linkreset} setOrders={setOrders} Borrow={()=>Borrow(row.id_commande)} commande = {commande} /></TableCell>
               
             </TableRow>
           )})}

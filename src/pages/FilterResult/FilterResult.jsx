@@ -106,7 +106,7 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
         <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
         <Link to="/Details">
         <div className="img"
-        style={{backgroundImage:`URL(./images/${item.image1})`}}
+        style={{backgroundImage:`URL(${item.image1})`}}
         onClick={()=>Borrow(item.id_objet)}
         ></div></Link>
         <CardContent>
