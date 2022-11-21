@@ -142,7 +142,13 @@ const handleUpload5 = () => {
   const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState('');
   const Datedajout = new Date()
 
-  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:imageUrl.replaceAll(' ', ''),image2:imageUrl2.replaceAll(' ', ''),image3:imageUrl3,image4.replaceAll(' ', ''):imageUrl4.replaceAll(' ', ''),image5:imageUrl5.replaceAll(' ', '')}
+  var img  = imageUrl.replaceAll(' ', '')
+  var img2 = imageUrl2.replaceAll(' ', '')
+  var img3 = imageUrl3.replaceAll(' ', '')
+  var img4 = imageUrl4.replaceAll(' ', '')
+  var img5 = imageUrl5.replaceAll(' ', '')
+
+  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:img, image2:img2, image3:img3, image4:img4, image5:img5 }
 
 
   function handlepost(){
