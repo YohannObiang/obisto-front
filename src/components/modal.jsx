@@ -20,8 +20,8 @@ export default function ScrollDialog({id, getitems}) {
   const onChangeFile = (event) => {
     setselectedFile(event.target.files[0])
     console.log(event.target.files[0])
-    setimageUrl(event.target.files[0].name.replaceAll(' ', '')) 
-    console.log(event.target.files[0].name.replaceAll(' ', '')) 
+    setimageUrl(event.target.files[0].name) 
+    console.log(event.target.files[0].name) 
 
   }
   const handleUpload = () => {
@@ -40,7 +40,7 @@ const [selectedFile2, setselectedFile2] = React.useState('')
 
   const onChangeFile2 = (event) => {
     setselectedFile2(event.target.files[0])
-    setimageUrl2(event.target.files[0].name.replaceAll(' ', '')) 
+    setimageUrl2(event.target.files[0].name) 
 
     console.log(imageUrl)
   }
@@ -60,7 +60,7 @@ const [imageUrl3, setimageUrl3] = React.useState('')
 
 const onChangeFile3 = (event) => {
   setselectedFile3(event.target.files[0])
-  setimageUrl3(event.target.files[0].name.replaceAll(' ', '')) 
+  setimageUrl3(event.target.files[0].name) 
 
 }
 const handleUpload3 = () => {
@@ -79,7 +79,7 @@ const [selectedFile4, setselectedFile4] = React.useState('')
 
   const onChangeFile4 = (event) => {
     setselectedFile4(event.target.files[0])
-    setimageUrl4(event.target.files[0].name.replaceAll(' ', '')) 
+    setimageUrl4(event.target.files[0].name) 
 
   }
   const handleUpload4 = () => {
@@ -98,7 +98,7 @@ const [imageUrl5, setimageUrl5] = React.useState('')
 
 const onChangeFile5 = (event) => {
   setselectedFile5(event.target.files[0])
-  setimageUrl5(event.target.files[0].name.replaceAll(' ', '')) 
+  setimageUrl5(event.target.files[0].name) 
 
 }
 const handleUpload5 = () => {
@@ -142,7 +142,7 @@ const handleUpload5 = () => {
   const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState('');
   const Datedajout = new Date()
 
-  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:imageUrl,image2:imageUrl2,image3:imageUrl3,image4:imageUrl4,image5:imageUrl5}
+  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:imageUrl.replaceAll(' ', ''),image2:imageUrl2.replaceAll(' ', ''),image3:imageUrl3,image4.replaceAll(' ', ''):imageUrl4.replaceAll(' ', ''),image5:imageUrl5.replaceAll(' ', '')}
 
 
   function handlepost(){
