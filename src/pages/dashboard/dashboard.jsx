@@ -105,7 +105,7 @@ console.log(localStorage.getItem('proprio'))
 
     const getitems = async () => {
       var response = await axios.get(`https://obistobackend.onrender.com/objets`);
-      var allcommandes = await axios.get(`https://obistobackend.onrender.com//commandes`);
+      var allcommandes = await axios.get(`https://obistobackend.onrender.com/commandes`);
         setitems(response.data);
         setcommandes(allcommandes.data)
  };
