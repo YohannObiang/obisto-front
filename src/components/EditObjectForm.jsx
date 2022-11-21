@@ -10,10 +10,10 @@ import axios from 'axios';
 
 
 
-export default function NewObjectForm({
+export default function EditObjectForm({
   setNomObjet, setCategorieObjet, setEtatObjet, setCautionObjet, setPrixJourObjet, setPrixSemaineObjet,
   NomObjet, CategorieObjet, EtatObjet, CautionObjet, PrixJourObjet, PrixSemaineObjet,onChangeFile,onChangeFile2,
-  onChangeFile3, onChangeFile4, onChangeFile5
+  onChangeFile3, onChangeFile4, onChangeFile5,objectToDelete,imageUrl,imageUrl2,imageUrl3,imageUrl4,imageUrl5
 }) {
 function nom(e){
   setNomObjet(e.target.value)
@@ -79,11 +79,12 @@ function prixsemaine(e){
             fullWidth
             variant="standard"
             autoFocus
+            value={NomObjet}
             onChange={nom}
           />
         </Grid>
 
-          <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} sx={{display: 'flex', textAlign: 'left'}}>
             <FormControl variant="standard" sx={{ width:'100%'}}>
               <InputLabel id="demo-simple-select-standard-label">Catégorie</InputLabel>
               <Select
@@ -106,7 +107,7 @@ function prixsemaine(e){
             </FormControl>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} sx={{display: 'flex', textAlign: 'left'}}>
             <FormControl variant="standard" sx={{ width:'100%'}}>
               <InputLabel id="demo-simple-select-standard-label">Etat</InputLabel>
               <Select
@@ -133,6 +134,8 @@ function prixsemaine(e){
             label="Caution"
             fullWidth
             variant="standard"
+            value={CautionObjet}
+
             onChange={caution}
 
           />
@@ -146,6 +149,8 @@ function prixsemaine(e){
             label="Prix journalier"
             name="prix_jour"
             variant="standard"
+            value={PrixJourObjet}
+
             onChange={prixjour}
 
           />
@@ -159,6 +164,8 @@ function prixsemaine(e){
             label="Description"
             name="prix_semaine"
             variant="standard"
+            value={PrixSemaineObjet}
+
             onChange={prixsemaine}
 
           />
@@ -166,25 +173,26 @@ function prixsemaine(e){
 
 
 
-        <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input onChange={onChangeFile} type="file" name="" id="" />
+          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
+          <input value={imageUrl} onChange={onChangeFile} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input onChange={onChangeFile2} type="file" name="" id="" />
+          <input value={imageUrl2} onChange={onChangeFile2} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input onChange={onChangeFile3} type="file" name="" id="" />
+          <input value={imageUrl3} onChange={onChangeFile3} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input onChange={onChangeFile4} type="file" name="" id="" />
+          <input value={imageUrl4} onChange={onChangeFile4} type="file" name="" id="" />
           </Grid>
 
           <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input onChange={onChangeFile5} type="file" name="" id="" />
+          <input value={imageUrl5} onChange={onChangeFile5} type="file" name="" id="" />
           </Grid>
+
 
         
         

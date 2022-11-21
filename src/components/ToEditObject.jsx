@@ -6,12 +6,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FloatingBtn from './floatingbutton';
-import NewObjectForm from './NewObjectForm';
+import EditObjectForm from './EditObjectForm';
 import axios from 'axios';
+import MenuItem from '@mui/material/MenuItem';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 
-export default function ScrollDialog({id, getitems}) {
+
+
+export default function ToEditObject({id, getitems, objectToDelete}) {
   const BASE_URL = 'https://photouploadobisto.onrender.com';
 // image1
   const [selectedFile, setselectedFile] = React.useState()
@@ -134,31 +138,27 @@ const handleUpload5 = () => {
 
   
 
-  const [NomObjet, setNomObjet] = React.useState('');
-  const [CategorieObjet, setCategorieObjet] = React.useState('');
-  const [EtatObjet, setEtatObjet] = React.useState('');
-  const [CautionObjet, setCautionObjet] = React.useState('');
-  const [PrixJourObjet, setPrixJourObjet] = React.useState('');
-  const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState('');
+  const [NomObjet, setNomObjet] = React.useState(objectToDelete.objet);
+  const [CategorieObjet, setCategorieObjet] = React.useState(objectToDelete.Categorie);
+  const [EtatObjet, setEtatObjet] = React.useState(objectToDelete.etat);
+  const [CautionObjet, setCautionObjet] = React.useState(objectToDelete.caution);
+  const [PrixJourObjet, setPrixJourObjet] = React.useState(objectToDelete.prix_jour);
+  const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState(objectToDelete.description);
   const Datedajout = new Date()
 
-  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet,id_proprietaire:id,statut:"Disponible",date_dajout:Datedajout.toLocaleDateString(),image1:imageUrl,image2:imageUrl2,image3:imageUrl3,image4:imageUrl4,image5:imageUrl5}
+  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet}
 
+  var id = String(objectToDelete.id_objet)
 
   function handlepost(){
-    handleUpload();
-    handleUpload2();
-    handleUpload3();
-    handleUpload4();
-    handleUpload5();
+
 
     console.log(obj)
-    axios.post('https://obistobackend.onrender.com/ajout/objet', obj).then(res => {
+    axios.put(`https://obistobackend.onrender.com/update/objet/${id}`, obj).then(res => {
       console.log(res);
       console.log(res.data);
     })
     setOpen(false);
-    getitems()
   }
 
 
@@ -166,22 +166,25 @@ const handleUpload5 = () => {
     <div>
       {/* <Button >scroll=paper</Button>
       <Button onClick={handleClickOpen('body')}>scroll=body</Button> */}
-      <FloatingBtn className='floatingbtn' openpaper={handleClickOpen('paper')}/>
-      <Dialog
+        <MenuItem onClick={handleClickOpen('body')} disableRipple>
+          <EditIcon />
+          Modifier
+        </MenuItem>      <Dialog
         open={open}
         onClose={handleClose}
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Ajouter un objet</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Modifier un objet</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <NewObjectForm
+            <EditObjectForm
+            objectToDelete={objectToDelete}
             setNomObjet={setNomObjet} 
             setCategorieObjet={setCategorieObjet}
             setEtatObjet={setEtatObjet}
@@ -199,12 +202,17 @@ const handleUpload5 = () => {
             CautionObjet={CautionObjet}
             PrixJourObjet={PrixJourObjet}
             PrixSemaineObjet={PrixSemaineObjet}
+            imageUrl={imageUrl}
+            imageUrl2={imageUrl2}
+            imageUrl3={imageUrl3}
+            imageUrl4={imageUrl4}
+            imageUrl5={imageUrl5}
             />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handlepost}>Ajouter</Button>
+          <Button onClick={handlepost}>Enregistrer</Button>
         </DialogActions>
       </Dialog>
     </div>

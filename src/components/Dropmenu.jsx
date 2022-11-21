@@ -3,12 +3,14 @@ import { styled, alpha } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ToDelete from './ToDelete'
+import ToEditObject from './ToEditObject'
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -26,8 +28,8 @@ const StyledMenu = styled((props) => (
 ))(({ theme }) => ({
   '& .MuiPaper-root': {
     borderRadius: 6,
-    marginTop: theme.spacing(1),
-    minWidth: 180,
+    marginTop: theme.spacing(0),
+    minWidth: 150,
     color:
       theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
     boxShadow:
@@ -51,16 +53,17 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Dropmenu() {
+export default function Dropmenu({linkreset, Borrow, objectToDelete}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    Borrow()
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  var id = String(objectToDelete.id_objet)
   return (
     <div style={{width:'fit-content', marginRight:0}}>
       <IconButton
@@ -84,23 +87,9 @@ export default function Dropmenu() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon />
-          Edit
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon />
-          Duplicate
-        </MenuItem>
-        <Divider sx={{ my: 0 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
-          Archive
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          More
-        </MenuItem>
+        <ToEditObject objectToDelete={objectToDelete}/>
+        <ToDelete id={id}  linkreset={linkreset}/>
+
       </StyledMenu>
     </div>
   );

@@ -10,22 +10,33 @@ import axios from 'axios';
 import ScrollDialog from './modal';
 import Dropmenu from './Dropmenu'
 
-export default function Objets({getitems, data,id}) {
+export default function Objets({getitems, data,id, linkreset}) {
 
+  const [objectToDelete, setobjectToDelete] = React.useState([])
+
+  const Borrow=(id_objet)=>{
+    const choosenOne=data.filter((element,index)=>{
+      return element.id_objet === id_objet});
+      console.log(choosenOne[0])
+      setobjectToDelete(choosenOne[0])
+
+
+  };
 
   
 
   return (
     <div className='ObjetsDiv'>
     <TableContainer component={Paper}>
-      <Table sx={{ width: '100%' }} aria-label="simple table">
+      <Table sx={{ width: '100vw' }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          <TableCell align="center">Id</TableCell>
+
+          <TableCell align="right">Id</TableCell>
             <TableCell align="center">Objet</TableCell>
             <TableCell align="center">Catégorie</TableCell>
             <TableCell align="center">Statut</TableCell>
-            <TableCell align="center" sx={{ width: '50px' }}></TableCell>
+            <TableCell align="left" sx={{ width: '30px' }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,13 +45,14 @@ export default function Objets({getitems, data,id}) {
               key={row.id_objet}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" align="center" scope="row">
+             
+              <TableCell component="th" align="right" scope="row">
                 {row.id_objet}
               </TableCell>
               <TableCell align="center">{row.objet}</TableCell>
               <TableCell align="center">{row.Categorie}</TableCell>
-              <TableCell align="center">{row.statut}</TableCell>
-              <TableCell align="center"><Dropmenu/></TableCell>
+              <TableCell align="right">{row.statut}</TableCell>
+              <TableCell align="left"><Dropmenu objectToDelete={objectToDelete} Borrow={()=>Borrow(row.id_objet)} linkreset={linkreset}/></TableCell>
                 
               
             </TableRow>

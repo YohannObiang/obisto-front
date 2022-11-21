@@ -143,7 +143,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getcommandes = async () => {
-    var response = await axios.get("https://photouploadobisto.onrender.com/commandes");
+    var response = await axios.get("https://obistobackend.onrender.com/commandes");
     setcommandes(response.data);
 
   };
@@ -153,7 +153,7 @@ export default function PersistentDrawerLeft() {
     var code = prompt("Veuillez saisir votre code commande")
     for (let index = 0; index < commandes.length+1; index++) {
       if( commandes[index].code == code){
-        console.log('Found out')
+        alert('Le statut de votre commande est: ' + commandes[index].statut)
         break
       }
       if(index = commandes.length+1 && commandes[index].code == code) {
@@ -179,7 +179,7 @@ export default function PersistentDrawerLeft() {
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
-              sx={{ mr: 2, ...(open && { display: 'none' }) }}
+              sx={{ mr: 2, ...(open && { display: 'none' }),mt:'5px', mb:'5px' }}
             >
               <MenuIcon sx={{color:'#262D44'}}/>
             </IconButton>

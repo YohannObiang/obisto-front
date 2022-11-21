@@ -130,7 +130,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
       <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
       <Link to="/Details">
       <div className="img"
-        style={{backgroundImage:`URL(${item.image1})`}}
+        style={{backgroundImage:`URL(https://photouploadobisto.onrender.com/uploads/${item.image1})`}}
         onClick={()=>Borrow(item.id_objet)}
         ></div></Link>
       <CardContent>

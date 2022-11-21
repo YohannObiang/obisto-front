@@ -4,9 +4,7 @@ import Header from "../components/Header";
 import Avantages from "../components/Avantages";
 import LatestOffers from '../components/LatestOffers/LatestOffers'
 import Process from "../components/Process/Process";
-import ScrollDialog from "../components/modal";
-import Upload from "./upload";
-
+import Footer from "../components/footer/Footer"
 
 const Home = ({Objets, setSearchTerm,handleSearchTerm, setBorrowed}) => {
     return ( 
@@ -21,6 +19,7 @@ const Home = ({Objets, setSearchTerm,handleSearchTerm, setBorrowed}) => {
             setBorrowed={setBorrowed}
             />
             <Process/>
+            <Footer/>
         </div>
      );
 }

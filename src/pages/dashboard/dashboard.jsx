@@ -31,6 +31,8 @@ import {Link } from "react-router-dom";
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import Orders from '../../components/Orders';
 import Objets from '../../components/Objets';
+import Tooltip from '@mui/material/Tooltip';
+
 
 const drawerWidth = 240;
 
@@ -102,15 +104,15 @@ console.log(localStorage.getItem('proprio'))
 
 
     const getitems = async () => {
-      var response = await axios.get(`https://obistobackend.onrender.com/objets`);
-      var allcommandes = await axios.get(`https://obistobackend.onrender.com/commandes`);
+      var response = await axios.get(`https://obistobackend.onrender.com//objets`);
+      var allcommandes = await axios.get(`https://obistobackend.onrender.com//commandes`);
         setitems(response.data);
         setcommandes(allcommandes.data)
  };
  
 
 const getProprio = async () => {
-  var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
+  var response = await axios.get("https://obistobackend.onrender.com//proprietaires");
   console.log(response.data[IdUser]);
   setProprio(response.data[localStorage.getItem('proprio')]);
 
@@ -209,15 +211,12 @@ console.log(Proprio)
   function backtooptions(){
     document.getElementById('settingsoptions').style.display='inline';
     document.getElementById('accountinfos').style.display='none';
-    document.getElementById('settingstitle').style.display='flex';
-    document.getElementById('settingstitle').style.textAlign='center';
-    document.getElementById('settingstitle').style.width='max-content';
+
 
   }
   function accountinfo(){
     document.getElementById('accountinfos').style.display='inline';
     document.getElementById('settingsoptions').style.display='none';
-    document.getElementById('settingstitle').style.display='none';
   }
 
   
@@ -236,17 +235,19 @@ console.log(Proprio)
         <ThemeProvider theme={theme}>
 
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} sx={{width:'100%'}}>
             <Toolbar className='Topbar'>
             <div className='Topbar'>
-                <IconButton
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                sx={{ mr: 2, ...(open && { display: 'none' }) }}
-                >
-                <MenuIcon sx={{color:'#262D44'}}/>
-                </IconButton>
+            <Tooltip title="Menu">
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: 'none' }),mt:'5px', mb:'5px' }}
+            >
+              <MenuIcon sx={{color:'#262D44'}}/>
+            </IconButton>
+            </Tooltip>
 
 
                 <Link to="/">
@@ -332,6 +333,7 @@ console.log(Proprio)
             id={id}
             getitems={getitems}
             data={data}
+            linkreset={linkreset}
             />
 
         </div>
