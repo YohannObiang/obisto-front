@@ -22,7 +22,7 @@ export default function Commandeview({handleClose, commande, setOrders, setlinkr
   },[]);
 
   const getOrders = async () => {
-    var response = await axios.get(`http://192.168.43.241:4000/commandes/proprietaire/${commande.id_proprietaire}`);
+    var response = await axios.get(`https://obistobackend.onrender.com/commandes/proprietaire/${commande.id_proprietaire}`);
     setOrders(response.data);
 
   };
