@@ -161,7 +161,7 @@ const handleUpload5 = () => {
  
 
   function posted(){
-     axios.post('http://192.168.43.241:3001/ajout/objet', obj).then(res => {
+     axios.post('https://obistobackend.onrender.com:3001/ajout/objet', obj).then(res => {
       console.log(res);
       console.log(res.data);
       alert('Un nouvel objet ajouté')
