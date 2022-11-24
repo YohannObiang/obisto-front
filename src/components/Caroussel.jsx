@@ -27,13 +27,13 @@ const Caroussel = ({image,image2,image3,image4,image5, nom, Borrowed}) => {
           <img src={img2} height="100%" alt="" />
         </div>
         <div className="slideimg">
-          <img src={image3} height="100%" alt="" />
+          <img src={img3} height="100%" alt="" />
         </div>
         <div className="slideimg">
-          <img src={image4} height="100%" alt="" />
+          <img src={img4} height="100%" alt="" />
         </div>
         <div className="slideimg">
-          <img src={image5} height="100%" alt="" />
+          <img src={img5} height="100%" alt="" />
         </div>
          
         </Slider>
