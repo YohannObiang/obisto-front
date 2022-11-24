@@ -156,9 +156,7 @@ export default function PersistentDrawerLeft() {
         alert('Le statut de votre commande est: ' + commandes[index].statut)
         break
       }
-      if(index = commandes.length+1 && commandes[index].code == code) {
-        console.log('Error')
-        break
+      else if (index > commandes.length){
       }
   }
 }
@@ -227,14 +225,15 @@ export default function PersistentDrawerLeft() {
        
             <Link to="/categorie" onClick={()=>{setIdCategorie('Sono'); handleDrawerClose()}}>
 
-            <ListItem disablePadding>
+            <ListItem disablePadding color='primary'>
               <ListItemButton>
                 <ListItemIcon>
                   <VolumeUpIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-           
+
+<span style={{color:'#262D44'}}>
                 Sono
-                
+                </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -246,9 +245,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <CameraAltIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-              
+
+<span style={{color:'#262D44'}}>              
                 Caméras
                 
+              </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -260,9 +261,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <GamesIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-              
+
+<span style={{color:'#262D44'}}>              
                 Jeux vidéos
                 
+              </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -274,9 +277,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <SmartphoneIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-              
+
+<span style={{color:'#262D44'}}>              
                 Téléphones
                 
+              </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -288,9 +293,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <ConstructionIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-              
+
+<span style={{color:'#262D44'}}>              
                 Outils
                 
+              </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -302,9 +309,11 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <PrecisionManufacturingIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-              
+
+<span style={{color:'#262D44'}}>              
                 Machines
                 
+              </span>
               </ListItemButton>
             </ListItem>
             </Link>
@@ -322,9 +331,10 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <InboxIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
-           
+
+              <span style={{color:'#262D44'}}>           
                 Suivi de commande
-                
+                </span>
               </ListItemButton>
             </ListItem>
         </List>
@@ -366,6 +376,7 @@ export default function PersistentDrawerLeft() {
         Borrowed={Borrowed}
         Back={Back}
         />} /> 
+        <Route path="objets" element={<CheckoutForm/>}/>
         <Route path="/Validation" element={<CheckoutForm
          Borrowed={Borrowed}
         />} /> 

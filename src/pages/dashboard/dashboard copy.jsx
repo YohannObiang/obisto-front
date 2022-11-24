@@ -84,10 +84,11 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboardmaj({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
+export default function Dashboard({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
 
     const [Proprio, setProprio] = useState([]);
-    setlinkreset('Ajouter-un-article')
+
+
 
 const [items, setitems] = React.useState([]);
 const [commandes, setcommandes] = React.useState([]);
@@ -103,15 +104,15 @@ console.log(localStorage.getItem('proprio'))
 
 
     const getitems = async () => {
-      var response = await axios.get(`http://localhost:3001/objets`);
-      var allcommandes = await axios.get(`http://localhost:3001/commandes`);
+      var response = await axios.get(`http://192.168.43.241:3001/objets`);
+      var allcommandes = await axios.get(`http://192.168.43.241:3001/commandes`);
         setitems(response.data);
         setcommandes(allcommandes.data)
  };
  
 
 const getProprio = async () => {
-  var response = await axios.get("http://localhost:3001/proprietaires");
+  var response = await axios.get("http://192.168.43.241:3001/proprietaires");
   console.log(response.data[IdUser]);
   setProprio(response.data[localStorage.getItem('proprio')]);
 
@@ -227,13 +228,14 @@ console.log(Proprio)
 
 
 
+  setlinkreset('Ajouter-un-article')
 
   return (
     <Box sx={{ display: 'flex' }}>
         <ThemeProvider theme={theme}>
 
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} sx={{width:'100%'}}>
             <Toolbar className='Topbar'>
             <div className='Topbar'>
             <Tooltip title="Menu">
@@ -331,6 +333,7 @@ console.log(Proprio)
             id={id}
             getitems={getitems}
             data={data}
+            linkreset={linkreset}
             />
 
         </div>

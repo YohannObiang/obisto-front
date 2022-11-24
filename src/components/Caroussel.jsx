@@ -9,11 +9,11 @@ const Caroussel = ({image,image2,image3,image4,image5, nom, Borrowed}) => {
       slidesToShow: 1,
       slidesToScroll: 1
     };
-    var img = `${image}`
-    var img2 = `${image2}`
-    var img3 = `${image3}`
-    var img4 = `${image4}`
-    var img5 = `${image5}`
+    var img = `https://photouploadobisto.onrender.com/uploads/${image}` 
+    var img2 = `https://photouploadobisto.onrender.com/uploads/${image2}`
+    var img3 = `https://photouploadobisto.onrender.com/uploads/${image3}`
+    var img4 = `https://photouploadobisto.onrender.com/uploads/${image4}`
+    var img5 = `https://photouploadobisto.onrender.com/uploads/${image5}`
     console.log(Borrowed)
     console.log(image2)
     console.log(image3)    

@@ -8,6 +8,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FloatingBtn from './floatingbutton';
 import NewObjectForm from './NewObjectForm';
 import axios from 'axios';
+import {Link } from "react-router-dom";
+
 
 
 
@@ -15,88 +17,90 @@ export default function ScrollDialog({id, getitems}) {
   const BASE_URL = 'https://photouploadobisto.onrender.com';
 // image1
   const [selectedFile, setselectedFile] = React.useState()
-  const [imageUrl, setimageUrl] = React.useState('')
+  const [imageUrl, setimageUrl] = React.useState('image.png')
 
   const onChangeFile = (event) => {
     setselectedFile(event.target.files[0])
-
-  }
-  const handleUpload = () => {
-    
     const formData = new FormData();
-    formData.append('dataFile', selectedFile, selectedFile.name);
+    formData.append('dataFile', event.target.files[0], event.target.files[0].name);
     axios.post(BASE_URL + '/uploadfile', formData).then(response => {
         
       setimageUrl(response.data.file.filename)
+      console.log(response.data.file.filename)
     })
+
   }
+
 
 // image2
 const [selectedFile2, setselectedFile2] = React.useState('')
-  const [imageUrl2, setimageUrl2] = React.useState('')
+  const [imageUrl2, setimageUrl2] = React.useState('image.png')
 
   const onChangeFile2 = (event) => {
     setselectedFile2(event.target.files[0])
-  }
-  const handleUpload2 = () => {
-    
     const formData = new FormData();
-    formData.append('dataFile', selectedFile2, selectedFile2.name);
+    formData.append('dataFile', event.target.files[0], event.target.files[0].name);
     axios.post(BASE_URL + '/uploadfile', formData).then(response => {
         
       setimageUrl2(response.data.file.filename)
+      console.log(response.data.file.filename)
     })
   }
+
 
   // image3
 const [selectedFile3, setselectedFile3] = React.useState('')
-const [imageUrl3, setimageUrl3] = React.useState('')
+const [imageUrl3, setimageUrl3] = React.useState('image.png')
 
 const onChangeFile3 = (event) => {
   setselectedFile3(event.target.files[0])
-}
-const handleUpload3 = () => {
-  
   const formData = new FormData();
-  formData.append('dataFile', selectedFile3, selectedFile3.name);
+  formData.append('dataFile', event.target.files[0], event.target.files[0].name);
   axios.post(BASE_URL + '/uploadfile', formData).then(response => {
       
     setimageUrl3(response.data.file.filename)
+    console.log(response.data.file.filename)
   })
 }
+
 
 // image4
 const [selectedFile4, setselectedFile4] = React.useState('')
-  const [imageUrl4, setimageUrl4] = React.useState('')
+  const [imageUrl4, setimageUrl4] = React.useState('image.png')
 
   const onChangeFile4 = (event) => {
     setselectedFile4(event.target.files[0])
-  }
-  const handleUpload4 = () => {
-    
+
     const formData = new FormData();
-    formData.append('dataFile', selectedFile4, selectedFile4.name);
+    formData.append('dataFile', event.target.files[0], event.target.files[0].name);
     axios.post(BASE_URL + '/uploadfile', formData).then(response => {
         
       setimageUrl4(response.data.file.filename)
+      console.log(response.data.file.filename)
     })
+    
   }
+
 
   // image5
 const [selectedFile5, setselectedFile5] = React.useState('')
-const [imageUrl5, setimageUrl5] = React.useState('')
+const [imageUrl5, setimageUrl5] = React.useState('image.png')
 
 const onChangeFile5 = (event) => {
   setselectedFile5(event.target.files[0])
-}
-const handleUpload5 = () => {
-  
+  console.log(event.target.files[0])
+
   const formData = new FormData();
-  formData.append('dataFile', selectedFile5, selectedFile5.name);
+  formData.append('dataFile', event.target.files[0], event.target.files[0].name);
   axios.post(BASE_URL + '/uploadfile', formData).then(response => {
       
     setimageUrl5(response.data.file.filename)
+    console.log(response.data.file.filename)
   })
+}
+const handleUpload5 = () => {
+  console.log(imageUrl5)
+ 
 }
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -143,37 +147,24 @@ const handleUpload5 = () => {
     setVerify(false);
   };
   const handleOpen = (scrollType) => () => {
-    handleUpload();
-    handleUpload2();
-    handleUpload3();
-    handleUpload4();
-    handleUpload5();
-
+   
+    console.log(imageUrl)
+    console.log(imageUrl2)
+    console.log(imageUrl3)
+    console.log(imageUrl4)
+    console.log(imageUrl5)
     setVerify(true);
     setScrollin(scrollType);
-        console.log(obj)
+    console.log(obj)
 
   };
-  function handlepost(){
-    handleUpload();
-    handleUpload2();
-    handleUpload3();
-    handleUpload4();
-    handleUpload5();
-
-    console.log(obj)
-    // axios.post('https://obistobackend.onrender.com/ajout/objet', obj).then(res => {
-    //   console.log(res);
-    //   console.log(res.data);
-    // })
-    // setOpen(false);
-    // getitems()
-  }
+ 
 
   function posted(){
-     axios.post('https://obistobackend.onrender.com/ajout/objet', obj).then(res => {
+     axios.post('http://192.168.43.241:3001/ajout/objet', obj).then(res => {
       console.log(res);
       console.log(res.data);
+      alert('Un nouvel objet ajouté')
     })
     setVerify(false);
 
@@ -245,7 +236,8 @@ const handleUpload5 = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={Close}>Non</Button>
-          <Button onClick={posted} >Oui</Button>
+          <Link to="/Ajouter-un-article/maj">
+          <Button onClick={posted} >Oui</Button></Link>
         </DialogActions>
       </Dialog>
         </DialogActions>

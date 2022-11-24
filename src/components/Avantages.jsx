@@ -8,34 +8,34 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 const Avantages = () => {
     return ( 
         <div className='Avantages'>
-            <h2>Avantages
+            <h2 style={{color:'#262D44'}}>Avantages
                 
             </h2>
             <div className="avantages">
                 <div className="avantage">
                     <div className="circleadvantage">
-                        <WidgetsIcon sx={{fontSize:'7vw'}}/>
+                        <WidgetsIcon sx={{fontSize:'7vw', color:'#262D44'}}/>
                     </div>
-                    <strong>Emprunter toutes choses</strong>
-                    <p className="centeredText" >Emprunter des objets au lieu d'acheter</p>
+                    <strong style={{color:'#262D44'}}>Emprunter toutes choses</strong>
+                    <p className="centeredText" style={{color:'#262D44'}} >Emprunter des objets au lieu d'acheter</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
-                        <SavingsIcon sx={{fontSize:'7vw'}}/>
-                    </div>                    <strong>Economiser de l'argent</strong>
-                    <p className="centeredText" >Payer moins et louer à très petit prix</p>
+                        <SavingsIcon sx={{fontSize:'7vw', color:'#262D44'}}/>
+                    </div>                    <strong style={{color:'#262D44'}}>Economiser de l'argent</strong>
+                    <p className="centeredText" style={{color:'#262D44'}} >Payer moins et louer à très petit prix</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
-                        <HandshakeIcon sx={{fontSize:'7vw'}}/>
-                    </div>                    <strong>Faire louer votre biens</strong>
-                    <p className="centeredText" >Rendre lucratifs votre objets peu utilisés</p>
+                        <HandshakeIcon sx={{fontSize:'7vw', color:'#262D44'}}/>
+                    </div>                    <strong style={{color:'#262D44'}}>Faire louer votre biens</strong>
+                    <p className="centeredText" style={{color:'#262D44'}} >Rendre lucratifs votre objets peu utilisés</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">
-                        <TrendingUpIcon sx={{fontSize:'7vw'}}/>
-                    </div><strong>Booster votre business</strong>
-                    <p className="centeredText" >Optimiser votre business de location</p>
+                        <TrendingUpIcon sx={{fontSize:'7vw', color:'#262D44'}}/>
+                    </div><strong style={{color:'#262D44'}}>Booster votre business</strong>
+                    <p className="centeredText" style={{color:'#262D44'}} >Optimiser votre business de location</p>
                 </div>
             </div>
             

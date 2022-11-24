@@ -23,7 +23,6 @@ const LOGIN_URL = '/proptietaire';
 
 
 
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -111,19 +110,26 @@ export default function SignIn({setlogin, setloggedin}) {
   const Connexion = (e) => {
  
   for (let index = 0; index <= Objets.length+1; index++) {
+
+
     const element1 = Objets[index];
     const element2 = Objets[index];
-    console.log(Objets)
+
     const fromdb = element1.email_proprio+element2.password
     const frominput = user+pwd
+
+
     if(frominput === fromdb && index < Objets.length){
+
       setSuccess(true);
       alert("Bienvenue "+Objets[index].nom+ " " +Objets[index].prenom)
+
       localStorage.clear()
       localStorage.setItem('loggedin', '/Ajouter-un-article')
       localStorage.setItem('login', '/loggedoff')
       setloggedin('/Ajouter-un-article')
       setlogin('/loggedoff')
+
       localStorage.setItem('proprio', index)
       break
 
@@ -165,7 +171,7 @@ console.log(localStorage.getItem('proprio'))
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{ textAlign: 'center' }}>
+          <Typography component="h1" variant="h5" sx={{ textAlign: 'center', color:'#262D44' }}> 
             Connexion
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -213,7 +219,7 @@ console.log(localStorage.getItem('proprio'))
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Mot de passe oublié?
+                  {/* Mot de passe oublié? */}
                 </Link>
               </Grid>
               <Grid item>

@@ -10,12 +10,14 @@ import EditObjectForm from './EditObjectForm';
 import axios from 'axios';
 import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
+import {Link } from "react-router-dom";
 
 
 
 
 
-export default function ToEditObject({id, getitems, objectToDelete}) {
+
+export default function ToEditObject({id, linkreset, objectToDelete}) {
   const BASE_URL = 'https://photouploadobisto.onrender.com';
 // image1
   const [selectedFile, setselectedFile] = React.useState()
@@ -146,7 +148,7 @@ const handleUpload5 = () => {
   const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState(objectToDelete.description);
   const Datedajout = new Date()
 
-  const obj = {objet:NomObjet,caution:CautionObjet,etat:EtatObjet,prix_jour:PrixJourObjet,description:PrixSemaineObjet,categorie:CategorieObjet}
+  const obj = {objet:String(NomObjet),caution:String(CautionObjet),etat:String(EtatObjet),prix_jour:String(PrixJourObjet),description:String(PrixSemaineObjet),categorie:String(CategorieObjet)}
 
   var id = String(objectToDelete.id_objet)
 
@@ -161,7 +163,7 @@ const handleUpload5 = () => {
     setOpen(false);
   }
 
-
+  var lien = `/${linkreset}`
   return (
     <div>
       {/* <Button >scroll=paper</Button>
@@ -212,8 +214,10 @@ const handleUpload5 = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handlepost}>Enregistrer</Button>
-        </DialogActions>
+          <Link to={lien} onClick={handlepost}>
+          <Button >Enregistrer</Button>
+          </Link>
+                  </DialogActions>
       </Dialog>
     </div>
   );

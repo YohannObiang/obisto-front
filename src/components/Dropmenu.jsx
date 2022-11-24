@@ -87,7 +87,7 @@ export default function Dropmenu({linkreset, Borrow, objectToDelete}) {
         open={open}
         onClose={handleClose}
       >
-        <ToEditObject objectToDelete={objectToDelete}/>
+        <ToEditObject linkreset={linkreset} objectToDelete={objectToDelete}/>
         <ToDelete id={id}  linkreset={linkreset}/>
 
       </StyledMenu>

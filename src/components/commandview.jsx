@@ -22,7 +22,7 @@ export default function Commandeview({handleClose, commande, setOrders, setlinkr
   },[]);
 
   const getOrders = async () => {
-    var response = await axios.get(`https://obistobackend.onrender.com/commandes/proprietaire/${commande.id_proprietaire}`);
+    var response = await axios.get(`http://192.168.43.241:4000/commandes/proprietaire/${commande.id_proprietaire}`);
     setOrders(response.data);
 
   };
@@ -61,7 +61,7 @@ export default function Commandeview({handleClose, commande, setOrders, setlinkr
       }
   
 
-      axios.put(`https://obistobackend.onrender.com/update/commande/${commande.id_commande}`, order).then(res => {
+      axios.put(`http://192.168.43.241:4000/update/commande/${commande.id_commande}`, order).then(res => {
         console.log(res);
         console.log(res.data);
         getOrders()
@@ -78,7 +78,7 @@ export default function Commandeview({handleClose, commande, setOrders, setlinkr
     }
 
 
-    axios.put(`https://obistobackend.onrender.com/update/commande/${commande.id_commande}`, order).then(res => {
+    axios.put(`http://192.168.43.241:4000/update/commande/${commande.id_commande}`, order).then(res => {
       console.log(res);
       console.log(res.data);
       getOrders()
@@ -97,7 +97,7 @@ else{
     }
 
 
-    axios.put(`https://obistobackend.onrender.com/update/commande/${commande.id_commande}`, order).then(res => {
+    axios.put(`http://192.168.43.241:4000/update/commande/${commande.id_commande}`, order).then(res => {
       console.log(res);
       console.log(res.data);
       getOrders()

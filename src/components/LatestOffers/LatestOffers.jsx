@@ -60,7 +60,7 @@ const LatestOffers = ({ setBorrowed}) => {
      return ( 
 
         <div className="container">
-        <h2>Dernières offres</h2>
+        <h2 style={{color:'#262D44'}}>Dernières offres</h2>
 
         <div className="LatestOffers">
         
@@ -83,14 +83,14 @@ const LatestOffers = ({ setBorrowed}) => {
         <CardContent>
 
         
-          <strong >{item.objet}</strong><br />
+          <strong style={{color:'#262D44'}}>{item.objet}</strong><br />
           
           <Typography className='text'  variant="text" color="text.secondary">
           {item.Categorie}
           </Typography>
 
           <br />
-          <Typography  variant="h7" className='text'>
+          <Typography  variant="h7" className='text' color='#262D44'>
           {item.prix_jour} fcfa /Jour
           </Typography>
         </CardContent>
@@ -98,10 +98,10 @@ const LatestOffers = ({ setBorrowed}) => {
 
         <CardActions>
         <Link to="/Validation">
-          <Button size="small" variant="contained" color='secondary' onClick={()=>Borrow(item.id_objet)} > <strong className='text'>Emprunter</strong></Button>
+          <Button size="small" variant="contained" color='secondary' onClick={()=>Borrow(item.id_objet)} > <strong className='text' style={{color:'#262D44'}}>Emprunter</strong></Button>
         </Link>
         <Link to="/Details">
-          <Button size="small" onClick={()=>Borrow(item.id_objet)} ><span className='text'>VOIR</span></Button>
+          <Button size="small" onClick={()=>Borrow(item.id_objet)} ><span className='text' style={{color:'#262D44'}}>VOIR</span></Button>
 
         </Link>
 

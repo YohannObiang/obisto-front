@@ -44,9 +44,7 @@ export default function ToDelete({id, getitems, linkreset}) {
 
   function deleteobject (){
     axios.delete(`https://obistobackend.onrender.com/delete/objet/${id}`)
-    document.getElementById('Commandes').style.display='none';
-    document.getElementById('Objets').style.display='inline';
-    document.getElementById('Settings').style.display='none';
+
   }
 
 

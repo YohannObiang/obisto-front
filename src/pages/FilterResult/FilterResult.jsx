@@ -78,9 +78,9 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
     return ( 
 
         <div className="container">
-        <h2>Resultat de recherche pour: "{SearchTerm}"</h2>
+        <h2 style={{color:'#262D44'}} >Resultat de recherche pour: "{SearchTerm}"</h2>
         <div className="filter">
-            <select name="" id="price" onChange={handleChangePrix}>
+            <select name="" id="price" onChange={handleChangePrix} style={{color:'#262D44'}}>
                 <option value={0}>--- Prix --- (fcfa)</option>
                 <option value={1}>0 - 2500</option>
                 <option value={2}>2501 - 5000</option>
@@ -101,41 +101,42 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
                 return(
                   <div key={item.id_objet} className='object'>
 
-          <ThemeProvider theme={theme}>
+<ThemeProvider theme={theme} >
 
-        <Card sx={{ width: '95%', marginBottom: 1}}  key='' >
-        <Link to="/Details">
-        <div className="img"
-        style={{backgroundImage:`URL(https://photouploadobisto.onrender.com/uploads/${item.image1})`}}
-        onClick={()=>Borrow(item.id_objet)}
-        ></div></Link>
-        <CardContent>
+<Card sx={{ width: '95%', marginBottom: 1}}  key='' >
+<Link to="/Details">
+<div className="img"
+style={{backgroundImage:`URL(https://photouploadobisto.onrender.com/uploads/${ item.image1})`}}
+onClick={()=>Borrow(item.id_objet)}
+></div></Link>
+<CardContent>
 
-        
-          <strong  >{item.objet}</strong><br />
-          
-          <Typography className='text'  variant="text" color="text.secondary">
-          {item.Categorie} 
-          </Typography>
 
-          <br />
-          <Typography  variant="h7" className='text'>
-          {item.prix_jour} fcfa /Jour
-          </Typography>
-        </CardContent>
-        <Divider/>
+  <strong style={{color:'#262D44'}}>{item.objet}</strong><br />
+  
+  <Typography className='text'  variant="text" color="text.secondary">
+  {item.Categorie}
+  </Typography>
 
-        <CardActions>
-        <Link to="/Validation">
-          <Button size="small" variant="contained" color='secondary' onClick={()=>Borrow(item.id_objet)} > <strong className='text'>Emprunter</strong></Button>
-        </Link>
-        <Link to="/Details">
-          <Button size="small" onClick={()=>Borrow(item.id_objet)}><span className='text'>VOIR</span></Button>
+  <br />
+  <Typography  variant="h7" className='text' color='#262D44'>
+  {item.prix_jour} fcfa /Jour
+  </Typography>
+</CardContent>
+<Divider/>
 
-        </Link>
-        </CardActions>
-          </Card>
-          </ThemeProvider>
+<CardActions>
+<Link to="/Validation">
+  <Button size="small" variant="contained" color='secondary' onClick={()=>Borrow(item.id_objet)} > <strong className='text' style={{color:'#262D44'}}>Emprunter</strong></Button>
+</Link>
+<Link to="/Details">
+  <Button size="small" onClick={()=>Borrow(item.id_objet)} ><span className='text' style={{color:'#262D44'}}>VOIR</span></Button>
+
+</Link>
+
+</CardActions>
+  </Card>
+  </ThemeProvider>
           </div>
               )})}
 

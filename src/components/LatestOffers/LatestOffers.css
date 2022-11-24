@@ -34,6 +34,9 @@
 h2{
     font-size: 40px;
 }
+*{
+    color:'#262D44'
+}
 @media (max-width:900px) {
     .LatestOffers{
         width: 100vw;

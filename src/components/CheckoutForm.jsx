@@ -12,6 +12,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import Payment from './Payment';
 import axios from 'axios';
+import {Link } from "react-router-dom";
+
 // import Review from './Review';
 
 
@@ -127,14 +129,14 @@ export default function CheckoutForm({Borrowed}) {
   id_proprietaire: Borrowed.id_proprietaire,
   date_de_commande:  datedecommande.toLocaleDateString(),
   statut: "En attente",
-  code: parseInt(`${code}`+`${Borrowed.id_objet}`)
+  code: parseInt(`${code}`)
 }
 
   function post(){
-    axios.post('https://obistobackend.onrender.com//commande', commande).then(res => {
+    axios.post('https://obistobackend.onrender.com/ajout/commande', commande).then(res => {
       console.log(res);
       console.log(res.data);
-      alert("Votre commande a été éffectuée avec succès !")
+      alert("Votre commande a été éffectuée avec succès ! Votre code commande est : " + code)
     console.log(commande)
   })}
 
@@ -162,9 +164,11 @@ export default function CheckoutForm({Borrowed}) {
               <Typography variant="subtitle1">
                 Afin de valider votre commande auprès du proprietaire, vous serez redirigé vers <strong>e-Billing</strong> pour effectuer le paiement de celle-ci.
               </Typography>
+                <Link to='/'>
                   <Button  sx={{ mt: 3, ml: 0 }} onClick={post}>
                     Continuer
                   </Button>
+                </Link>
             </React.Fragment>
           ) : (
             <React.Fragment>

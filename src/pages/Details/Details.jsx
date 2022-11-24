@@ -19,7 +19,7 @@ const Details = ({Borrowed, Back}) => {
     palette: {
       primary: {
   
-        main: '#000',
+        main: '#262D44',
   
       },
       secondary: {
@@ -46,7 +46,7 @@ var lien =`/${Back}`
         <Card sx={{ width: '76%', height:'580px', marginBottom: 5}}   >
         <Back/>
         <CardContent>
-        <h2>Détails</h2>        
+        <h2 style={{color:'#262D44'}}>Détails</h2>        
         <Caroussel 
         nom = {Borrowed.objet}
         image = {Borrowed.image1}
@@ -64,13 +64,16 @@ var lien =`/${Back}`
         <h3>{Borrowed.objet}</h3>
         <Divider/>
         <br />
-        <span>Forfaits de location:</span><br />
-        <span>{Borrowed.prix_jour} fcfa /Jour</span><br />
-        <span>{Borrowed.prix_semaine} fcfa /Semaine</span><br /><br />
-        <span>Etat: Excellent</span><br /><br />
-        <span>Caution: Aucune</span><br /><br />
+        <span style={{color:'#262D44'}}>Forfaits de location:</span><br />
+        <span style={{color:'#262D44'}}>{Borrowed.prix_jour} fcfa /Jour</span><br />
+        <span style={{color:'#262D44'}}>{Borrowed.prix_semaine} fcfa /Semaine</span><br /><br />
+        <span style={{color:'#262D44'}}>Etat: Excellent</span><br /><br />
+        <span style={{color:'#262D44'}}>Caution: Aucune</span><br /><br />
         <div className="description">
-        {Borrowed.description}
+        <span style={{color:'#262D44'}}>
+          Description:<br/>
+          {Borrowed.description}
+        </span>
         </div>
                 <Divider/>
 
@@ -78,7 +81,7 @@ var lien =`/${Back}`
 
         <CardActions className='centered'>
         <Link to="/Validation">
-          <Button size="medium" variant="contained" color='secondary' sx={{marginBottom: 1, marginLeft:1}}> <strong className='text'>Emprunter</strong></Button>
+          <Button size="medium" variant="contained" color='secondary' sx={{marginBottom: 1, marginLeft:1}}> <strong className='text' style={{color:'#262D44'}}>Emprunter</strong></Button>
         </Link>
         <Link to={lien}>
           <Button size="small"  color='primary' sx={{marginBottom: 1, marginLeft:1}}> Retour</Button>
@@ -92,7 +95,7 @@ var lien =`/${Back}`
        <ThemeProvider theme={theme} >
 
         <Card sx={{ width: '90%', height:'450px', marginBottom: 2}}   >
-          <h2>Détails</h2>
+          <h2 style={{color:'#262D44'}}>Détails</h2>
           <Caroussel 
           nom = {Borrowed.objet}
           image = {Borrowed.image1}
@@ -112,18 +115,18 @@ var lien =`/${Back}`
         <Divider/>
           <div className="etatproduit">
             <div>
-        <span>Forfaits de location:</span><br />
-        <span>{Borrowed.prix_jour} fcfa /Jour</span><br />
+        <span style={{color:'#262D44'}}>Forfaits de location:</span><br />
+        <span style={{color:'#262D44'}}>{Borrowed.prix_jour} fcfa /Jour</span><br />
             </div>
             
         <div>
-                  <span>Etat: {Borrowed.etat}</span><br />
-                  <span>Caution: {Borrowed.caution}</span>
+                  <span style={{color:'#262D44'}}>Etat: {Borrowed.etat}</span><br />
+                  <span style={{color:'#262D44'}}>Caution: {Borrowed.caution}</span>
         </div>
           </div>
         <br />
         <div className="description">
-        <span>
+        <span style={{color:'#262D44'}}>
           Description:<br/>
           {Borrowed.description}
         </span>
@@ -134,7 +137,7 @@ var lien =`/${Back}`
       <div className="centered">
         <CardActions sx={{display: 'flex', flexDirection: 'column'}}>
         <Link to="/Validation">
-          <Button size="medium" variant="contained" sx={{m:1}} color='secondary'> <strong className='text'>Emprunter</strong></Button>
+          <Button size="medium" variant="contained" sx={{m:1}} color='secondary'> <strong className='text' style={{color:'#262D44'}}>Emprunter</strong></Button>
           </Link>
           
            <Link to={lien}>

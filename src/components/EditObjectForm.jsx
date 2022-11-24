@@ -173,25 +173,7 @@ function prixsemaine(e){
 
 
 
-          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input value={imageUrl} onChange={onChangeFile} type="file" name="" id="" />
-          </Grid>
-
-          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input value={imageUrl2} onChange={onChangeFile2} type="file" name="" id="" />
-          </Grid>
-
-          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input value={imageUrl3} onChange={onChangeFile3} type="file" name="" id="" />
-          </Grid>
-
-          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input value={imageUrl4} onChange={onChangeFile4} type="file" name="" id="" />
-          </Grid>
-
-          <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
-          <input value={imageUrl5} onChange={onChangeFile5} type="file" name="" id="" />
-          </Grid>
+         
 
 
         
