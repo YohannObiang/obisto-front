@@ -104,15 +104,15 @@ console.log(localStorage.getItem('proprio'))
 
 
     const getitems = async () => {
-      var response = await axios.get(`https://obistobackend.onrender.com/objets`);
-      var allcommandes = await axios.get(`https://obistobackend.onrender.com/commandes`);
+      var response = await axios.get(`https://photouploadobisto.onrender.com/objets`);
+      var allcommandes = await axios.get(`https://photouploadobisto.onrender.com/commandes`);
         setitems(response.data);
         setcommandes(allcommandes.data)
  };
  
 
 const getProprio = async () => {
-  var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
+  var response = await axios.get("https://photouploadobisto.onrender.com/proprietaires");
   console.log(response.data[IdUser]);
   setProprio(response.data[localStorage.getItem('proprio')]);
 

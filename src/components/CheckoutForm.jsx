@@ -13,6 +13,15 @@ import AddressForm from './AddressForm';
 import Payment from './Payment';
 import axios from 'axios';
 import {Link } from "react-router-dom";
+import {useRef} from 'react';
+import { useReactToPrint } from 'react-to-print';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Grid from '@mui/material/Grid';
+import logo from '../assets/logo.png'
+
+
 
 // import Review from './Review';
 
@@ -46,6 +55,9 @@ export default function CheckoutForm({Borrowed}) {
   const [Phone, setPhone] = React.useState('');
   const [Quartier, setQuartier] = React.useState('');
   const [BorrowPeriod, setBorrowPeriod] = React.useState('');
+  const [Code, setCode] = React.useState('');
+  const componentRef = useRef();
+
   function getStepContent(step) {
     
     switch (step) {
@@ -76,6 +88,8 @@ export default function CheckoutForm({Borrowed}) {
         Email={Email}
         Phone={Phone}
         Quartier={Quartier}
+        componentRef={componentRef}
+        code={code}
         />;
       // case 2:
       //   return <Review />;
@@ -85,6 +99,8 @@ export default function CheckoutForm({Borrowed}) {
   }
 
   const [activeStep, setActiveStep] = React.useState(0);
+  const [IDobjet, setIDobjet] = React.useState(0);
+  const [IDorders, setIDorders] = React.useState(0);
 
 
 
@@ -107,7 +123,9 @@ export default function CheckoutForm({Borrowed}) {
   ].join('/');
   
   }
-  
+  React.useEffect(() => {
+    setCode(Math.floor(Math.random()*9999));
+  },[]);
   var debut = formatDate(new Date(StartDate));
   var fin = formatDate(new Date(EndDate));
   var code = Math.floor(Math.random()*9999)
@@ -129,17 +147,37 @@ export default function CheckoutForm({Borrowed}) {
   id_proprietaire: Borrowed.id_proprietaire,
   date_de_commande:  datedecommande.toLocaleDateString(),
   statut: "En attente",
-  code: parseInt(`${code}`)
+  code: parseInt(`${Code}`)
 }
-
+  var faitle = `Fait le ${datedecommande.toLocaleDateString()}`
   function post(){
-    axios.post('https://obistobackend.onrender.com/ajout/commande', commande).then(res => {
+    setActiveStep(activeStep + 1);
+
+    axios.post('https://photouploadobisto.onrender.com/ajout/commande', commande).then(res => {
       console.log(res);
       console.log(res.data);
-      alert("Votre commande a été éffectuée avec succès ! Votre code commande est : " + code)
+      console.log(res.data.id_commande)
+      setIDorders(res.data.id_commande)
+      alert("Votre commande a été éffectuée avec succès ! Votre code commande est : " + Code)
     console.log(commande)
-  })}
+  })
+  
+}
+  // const handlePrint = useReactToPrint({
+  //   content: ()=> componentRef.current ,
+  //   documentTitle: 'Facture Obisto',
+  //   onAfterPrint: ()=> console.log('printed')
+    
+  // })
 
+  // const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: ()=> componentRef.current,
+    documentTitle: 'emp-data',
+    onAfterPrint: ()=>alert('Print success')
+  });
+
+  var total = Borrowed.prix_jour * BorrowPeriod
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -159,16 +197,74 @@ export default function CheckoutForm({Borrowed}) {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-                Dernière étape
+                Commande confirmée
               </Typography>
               <Typography variant="subtitle1">
-                Afin de valider votre commande auprès du proprietaire, vous serez redirigé vers <strong>e-Billing</strong> pour effectuer le paiement de celle-ci.
+              Votre commande est en attente d'acceptation auprès du propriétaire
+              Une copie de votre facture vous a été envoyée par mail.          
               </Typography>
-                <Link to='/'>
-                  <Button  sx={{ mt: 3, ml: 0 }} onClick={post}>
-                    Continuer
+
+              <div ref={componentRef} style={{ padding: '5%',width: '100%', height: window.innerHeight, display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <img src={logo} alt="" />
+      <Typography variant="h6" gutterBottom>
+        <br />
+        <strong >Commande</strong>
+      </Typography>
+      <List disablePadding  style={{width:'100%'}}>
+
+          <div >
+          <ListItem key={Borrowed.objet} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={Borrowed.objet} />
+            <Typography variant="body2"><strong>{Borrowed.prix_jour}fcfa /Jour</strong></Typography>
+          </ListItem>
+          <br />
+          <ListItem sx={{ py: 0, px: 0 }}>
+            Du:
+          <ListItemText primary={debut} />
+          au:
+          <ListItemText primary={fin} />
+          <Typography variant="body2"><strong>{BorrowPeriod} jour(s) </strong></Typography>
+        </ListItem>
+        <ListItem sx={{ py: 0, px: 0 }}>
+          <>(jj/mm/aaaa)</>
+        </ListItem>
+
+        </div>
+        <br />
+        <br />
+
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary="Montant total payé:" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+            {total}fcfa
+          </Typography>
+        </ListItem>
+        <ListItem sx={{ py: 1, px: 0 }}>
+          <ListItemText primary={faitle} />
+          
+        </ListItem>
+      </List>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2, textAlign:'center' }}>
+          <strong style={{textAlign:'center'}}>Destinataire</strong>
+          </Typography>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Nom: <strong>{Nom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Prenom: <strong>{Prenom}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Email: <strong>{Email}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Telephone: <strong>{Phone}</strong></div>
+          <div gutterBottom style={{display:'flex', justifyContent: 'space-between', width:'100%'}}>Quartier: <strong>{Quartier}</strong></div>
+        </Grid>
+
+      </Grid>
+      <h3>CODE COMMANDE: {Code} </h3> 
+    </div>
+
+                {/* <Link to='/'> */}
+                  <Button  sx={{ mt: 0, width:'100%', textAlign:'auto' }} variant='contained' onClick={handlePrint}>
+                    Télécharger la facture
                   </Button>
-                </Link>
+                {/* </Link> */}
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -176,23 +272,38 @@ export default function CheckoutForm({Borrowed}) {
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Retour
+                   <strong> Retour</strong>
                   </Button>
                 )}
 
-                <Button
+                
+                  {activeStep === steps.length - 1 ? 
+                  <Button
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={post}
                   sx={{ mt: 3, ml: 1 }}
                   color='secondary'
                 >
-                  <strong>{activeStep === steps.length - 1 ? 'Commander' : 'Suivant'}</strong>
-                </Button>
+                  <strong>
+                  Commander
+                  </strong>
+                  </Button> : <Button
+                variant="contained"
+                onClick={handleNext}
+                sx={{ mt: 3, ml: 1 }}
+                color='secondary'
+              >
+                <strong>
+                Suivant
+                </strong>
+                </Button>}
+                
               </Box>
             </React.Fragment>
           )}
         </Paper>
       </Container>
+      <button onClick={handlePrint}>print</button>
     </ThemeProvider>
   );
 }

@@ -62,7 +62,7 @@ export default function SignUp() {
     //   setmsg('Felicitations vous')
     // }
     setname(data.get('firstName'))
-    axios.post('https://obistobackend.onrender.com/ajout/proprietaire', post).then(res => {
+    axios.post('https://photouploadobisto.onrender.com/ajout/proprietaire', post).then(res => {
 
       console.log(res);
       if(String(res.data)==="POSTED"){

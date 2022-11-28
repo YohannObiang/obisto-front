@@ -108,7 +108,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/objets");
+    var response = await axios.get("https://photouploadobisto.onrender.com/objets");
     setObjets(response.data);
 
   };
@@ -143,7 +143,7 @@ export default function PersistentDrawerLeft() {
   }, []);
 
   const getcommandes = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/commandes");
+    var response = await axios.get("https://photouploadobisto.onrender.com/commandes");
     setcommandes(response.data);
 
   };

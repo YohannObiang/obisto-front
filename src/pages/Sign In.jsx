@@ -101,7 +101,7 @@ export default function SignIn({setlogin, setloggedin}) {
 
 
   const getObjets = async () => {
-    var response = await axios.get("https://obistobackend.onrender.com/proprietaires");
+    var response = await axios.get("https://photouploadobisto.onrender.com/proprietaires");
     setObjets(response.data);
 
   };

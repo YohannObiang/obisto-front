@@ -43,7 +43,7 @@ export default function ToDelete({id, getitems, linkreset}) {
   }, [open]);
 
   function deleteobject (){
-    axios.delete(`https://obistobackend.onrender.com/delete/objet/${id}`)
+    axios.delete(`https://photouploadobisto.onrender.com/delete/objet/${id}`)
 
   }
 

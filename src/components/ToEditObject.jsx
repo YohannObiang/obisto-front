@@ -156,7 +156,7 @@ const handleUpload5 = () => {
 
 
     console.log(obj)
-    axios.put(`https://obistobackend.onrender.com/update/objet/${id}`, obj).then(res => {
+    axios.put(`https://photouploadobisto.onrender.com/update/objet/${id}`, obj).then(res => {
       console.log(res);
       console.log(res.data);
     })

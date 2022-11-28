@@ -4,18 +4,13 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import logo from '../assets/logo.png'
 
 
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
 
-export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, Nom,Prenom,Email,Phone,Quartier}) {
+
+export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, code, Nom,Prenom,Email,Phone,Quartier,componentRef}) {
 
   function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -33,8 +28,9 @@ export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, Nom,
   var fin = formatDate(new Date(EndDate));
   var total = Borrowed.prix_jour * BorrowPeriod
   return (
+    
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+    <Typography variant="h6" gutterBottom>
         <strong>Commande</strong>
       </Typography>
       <List disablePadding>
@@ -80,6 +76,12 @@ export default function Review({StartDate, EndDate, BorrowPeriod, Borrowed, Nom,
         </Grid>
 
       </Grid>
+
+
+
+
+
+     
     </React.Fragment>
   );
 }

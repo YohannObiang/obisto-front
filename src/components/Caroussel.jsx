@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
 
 const Caroussel = ({image,image2,image3,image4,image5, nom, Borrowed}) => {
