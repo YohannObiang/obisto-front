@@ -161,7 +161,7 @@ const handleUpload5 = () => {
  
 
   function posted(){
-     axios.post('http://localhost:3001/ajout/objet', obj).then(res => {
+     axios.post('https://photouploadobisto.onrender.com/ajout/objet', obj).then(res => {
       console.log(res);
       console.log(res.data);
       alert('Un nouvel objet ajouté')
