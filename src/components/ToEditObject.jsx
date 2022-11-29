@@ -148,7 +148,7 @@ const handleUpload5 = () => {
   const [PrixSemaineObjet, setPrixSemaineObjet] = React.useState(objectToDelete.description);
   const Datedajout = new Date()
 
-  const obj = {objet:String(NomObjet),caution:String(CautionObjet),etat:String(EtatObjet),prix_jour:String(PrixJourObjet),description:String(PrixSemaineObjet),categorie:String(CategorieObjet)}
+  const obj = {objet:String(NomObjet),caution:String(CautionObjet),etat:String(EtatObjet),prix_jour:String(PrixJourObjet),description:String(PrixSemaineObjet),Categorie:String(CategorieObjet)}
 
   var id = String(objectToDelete.id_objet)
 
