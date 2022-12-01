@@ -37,7 +37,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
  
 
   const getObjets = async () => {
-    var response = await axios.get("http888://localhost:4000/objets");
+    var response = await axios.get("https://photouploadobisto.onrender.com/objets");
     setObjets(response.data);
 
   };
