@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './FilterResult.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -72,13 +72,22 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
     // setfilteredstuffs(filteredData);
     // }
   };
+  const [displaystate, setdisplaystate] = React.useState('none')
 
+  function setstatement() {
+    if(PriceFilter.length == 0){
+      setdisplaystate('flex')
+    }
+  }
 
+  useEffect(() => {
+    setstatement();
+  }, []);
 
     return ( 
 
         <div className="container">
-        <h2 style={{color:'#262D44'}} >Resultat de recherche pour: "{SearchTerm}"</h2>
+        <h2 style={{color:'#262D44'}} >Résultat de recherche pour: "{SearchTerm}"</h2>
         <div className="filter">
             <select name="" id="price" onChange={handleChangePrix} style={{color:'#262D44'}}>
                 <option value={0}>--- Prix --- (fcfa)</option>
@@ -92,7 +101,7 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
             
 
         </div>
-        <div id="searchResultnull" className="LatestOffers">
+        <div  className="LatestOffers">
         {PriceFilter.map((item) => {
 
 
@@ -140,8 +149,9 @@ onClick={()=>Borrow(item.id_objet)}
           </div>
               )})}
 
-        
         </div>
+        <h2 style={{display: displaystate, color:'#262D44'}}  id="searchResultnull">Aucun Résultat</h2>
+
         </div>
      );
 }

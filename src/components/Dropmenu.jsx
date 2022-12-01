@@ -53,7 +53,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Dropmenu({linkreset, Borrow, objectToDelete}) {
+export default function Dropmenu({setdisplayorders, setdisplayobject, linkreset, Borrow, objectToDelete}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -87,8 +87,8 @@ export default function Dropmenu({linkreset, Borrow, objectToDelete}) {
         open={open}
         onClose={handleClose}
       >
-        <ToEditObject linkreset={linkreset} objectToDelete={objectToDelete}/>
-        <ToDelete id={id}  linkreset={linkreset}/>
+        <ToEditObject setdisplayorders={setdisplayorders} setdisplayobject={setdisplayobject} linkreset={linkreset} objectToDelete={objectToDelete}/>
+        <ToDelete setdisplayorders={setdisplayorders} setdisplayobject={setdisplayobject} id={id}  linkreset={linkreset}/>
 
       </StyledMenu>
     </div>

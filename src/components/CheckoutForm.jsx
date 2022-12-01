@@ -173,8 +173,9 @@ export default function CheckoutForm({Borrowed}) {
   // const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: ()=> componentRef.current,
-    documentTitle: 'emp-data',
-    onAfterPrint: ()=>alert('Print success')
+    documentTitle: `Facture Obisto ${Code
+    }`,
+    // onAfterPrint: ()=>alert('Print success')
   });
 
   var total = Borrowed.prix_jour * BorrowPeriod

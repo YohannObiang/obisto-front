@@ -17,7 +17,7 @@ import {Link } from "react-router-dom";
 
 
 
-export default function ToEditObject({id, linkreset, objectToDelete}) {
+export default function ToEditObject({setdisplayorders, setdisplayobject, id, linkreset, objectToDelete}) {
   const BASE_URL = 'https://photouploadobisto.onrender.com';
 // image1
   const [selectedFile, setselectedFile] = React.useState()
@@ -157,10 +157,15 @@ const handleUpload5 = () => {
 
     console.log(obj)
     axios.put(`https://photouploadobisto.onrender.com/update/objet/${id}`, obj).then(res => {
+      
       console.log(res);
       console.log(res.data);
+      alert(`L'objet ${id} a été modifié`)
     })
     setOpen(false);
+    setdisplayorders('none');
+    setdisplayobject('inline')
+
   }
 
   var lien = `/${linkreset}`

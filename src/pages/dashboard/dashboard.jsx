@@ -84,7 +84,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
+export default function Dashboard({displayorders, setdisplayorders, displayobject, setdisplayobject,IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
 
     const [Proprio, setProprio] = useState([]);
 
@@ -179,13 +179,16 @@ console.log(Proprio)
     document.getElementById('appbar').style.display="inline";
     setloggedin('/loggedoff')
     setlogin('/Ajouter-un-article')
-
+    setdisplayobject('none')
+    setdisplayorders('inline')
   }
   
   function Commandes(){
     document.getElementById('Objets').style.display='none';
     document.getElementById('Settings').style.display='none';
     document.getElementById('Commandes').style.display='inline';
+    setdisplayobject('none')
+    setdisplayorders('inline')
     setOpen(false);
 
 
@@ -252,8 +255,8 @@ console.log(Proprio)
 
                 <Link to="/">
 
-<img  src={logo} alt="" onClick={()=>{document.getElementById('appbar').style.display="inline";}} />
-</Link>            </div>
+            <img  src={logo} alt="" onClick={()=>{document.getElementById('appbar').style.display="inline";setdisplayobject('none');setdisplayorders('inline')}} />
+            </Link>            </div>
             <Link to="/" >
                 <Button size='small' color='primary' onClick={logout}> 
                 <strong>
@@ -285,7 +288,7 @@ console.log(Proprio)
             <Divider />
             <List>
         
-            <Link to='objets'>
+           
                 <ListItem disablePadding onClick={Commandes}>
                 <ListItemButton>
                     <ListItemIcon>
@@ -296,7 +299,6 @@ console.log(Proprio)
                     
                 </ListItemButton>
                 </ListItem>
-            </Link>
 
                 <ListItem disablePadding onClick={Objet}>
                 <ListItemButton>
@@ -309,7 +311,7 @@ console.log(Proprio)
                 </ListItemButton>
                 </ListItem>
 
-                <ListItem disablePadding onClick={Settings}>
+                {/* <ListItem disablePadding onClick={Settings}>
                 <ListItemButton>
                     <ListItemIcon>
                     <SettingsIcon sx={{color:'#262D44'}}/>
@@ -318,18 +320,20 @@ console.log(Proprio)
                     Paramètres
                     
                 </ListItemButton>
-                </ListItem>
+                </ListItem> */}
             </List>
         </Drawer>
         <Main open={open} >
             <DrawerHeader />
-        <div id="Commandes">
+        <div id="Commandes" style={{display: displayorders}}>
             <h2>Commandes</h2>
-            <Orders linkreset={linkreset}  commandespropio={commandespropio}/>
+            <Orders displayorders={displayorders} linkreset={linkreset}  commandespropio={commandespropio}/>
         </div>
-        <div id="Objets">
+        <div id="Objets" style={{display: displayobject}}>
             <h2>Objets</h2>
             <Objets 
+            setdisplayobject={setdisplayobject}
+            setdisplayorders={setdisplayorders}
             id={id}
             getitems={getitems}
             data={data}

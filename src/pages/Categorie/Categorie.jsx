@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Categorie.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -37,7 +37,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
  
 
   const getObjets = async () => {
-    var response = await axios.get("https://photouploadobisto.onrender.com/objets");
+    var response = await axios.get("http888://localhost:4000/objets");
     setObjets(response.data);
 
   };
@@ -97,7 +97,17 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
         // setfilteredstuffs(filteredData);
         // }
       };
+      const [displaystate, setdisplaystate] = React.useState('none')
+
+      function setstatement() {
+        if(filteredstuffs.length == 0){
+          setdisplaystate('flex')
+        }
+      }
     
+      useEffect(() => {
+        setstatement();
+      }, []);
  
     return ( 
 
@@ -213,6 +223,8 @@ onClick={()=>Borrow(item.id_objet)}
 
         
         </div>
+        <h2 style={{display: displaystate}} id="searchResultnull">Aucun Résultat</h2>
+
         </div>
      );
 }

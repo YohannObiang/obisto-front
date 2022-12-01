@@ -13,7 +13,7 @@ import {Link } from "react-router-dom";
 
 
 
-export default function ScrollDialog({id, getitems}) {
+export default function ScrollDialog({setdisplayorders, setdisplayobject, id, getitems, linkreset}) {
   const BASE_URL = 'https://photouploadobisto.onrender.com';
 // image1
   const [selectedFile, setselectedFile] = React.useState()
@@ -167,11 +167,14 @@ const handleUpload5 = () => {
       alert('Un nouvel objet ajouté')
     })
     setVerify(false);
-
+    
+    setdisplayobject('inline')
+    setdisplayorders('none')
     setOpen(false);
   }
 
-  
+  var lien = `/${linkreset}`
+
 
   return (
     <div>
@@ -236,7 +239,7 @@ const handleUpload5 = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={Close}>Non</Button>
-          <Link to="/Ajouter-un-article/maj">
+          <Link to={lien}>
           <Button onClick={posted} >Oui</Button></Link>
         </DialogActions>
       </Dialog>

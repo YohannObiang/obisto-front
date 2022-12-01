@@ -28,8 +28,8 @@ const Avantages = () => {
                 <div className="avantage">
                     <div className="circleadvantage">
                         <HandshakeIcon sx={{fontSize:'7vw', color:'#262D44'}}/>
-                    </div>                    <strong style={{color:'#262D44'}}>Faire louer votre biens</strong>
-                    <p className="centeredText" style={{color:'#262D44'}} >Rendre lucratifs votre objets peu utilisés</p>
+                    </div>                    <strong style={{color:'#262D44'}}>Faire louer vos biens</strong>
+                    <p className="centeredText" style={{color:'#262D44'}} >Rendre lucratifs vos objets peu utilisés</p>
                 </div>
                 <div className="avantage">
                     <div className="circleadvantage">

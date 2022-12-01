@@ -62,18 +62,34 @@ export default function SignUp() {
     //   setmsg('Felicitations vous')
     // }
     setname(data.get('firstName'))
-    axios.post('https://photouploadobisto.onrender.com/ajout/proprietaire', post).then(res => {
+    if(data.get('email').includes('@') && data.get('email').includes('.')){
+      if (data.get('password').length > 8) {
+        if (data.get('password') === data.get('passwordrepeated')) {
+          axios.post('https://photouploadobisto.onrender.com/ajout/proprietaire', post).then(res => {
 
-      console.log(res);
-      if(String(res.data)==="POSTED"){
-        setmsg(`Félicitations !!!`)
-        document.getElementById('backtoregistering').style.display='none'
-        document.getElementById('gotologin').style.display='inline'
+          console.log(res);
+          if(String(res.data)==="POSTED"){
+            setmsg(`Félicitations !!!`)
+            document.getElementById('backtoregistering').style.display='none'
+            document.getElementById('gotologin').style.display='inline'
+          }
+          
+        })
+        }
+        else{
+          alert('Les mots de passes saisis ne correspondent pas')
+        }
         
-
       }
-      
-    })
+      else{
+        alert('Votre mot de passe doit contenir au moins 8 caracteres') 
+      }
+   
+    }
+    else{
+      alert('Votre adresse email doit etre au format suivant: "obisto@abc.xyz"')
+    }
+   
   };
 
   const [open, setOpen] = React.useState(false);
@@ -197,6 +213,18 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="standard"
+
+                  required
+                  fullWidth
+                  name="passwordrepeated"
+                  label="Répéter le mot de passe"
+                  type="passwordrepeated"
+                  id="passwordrepeated"
                 />
               </Grid>
               <Grid item xs={12}>

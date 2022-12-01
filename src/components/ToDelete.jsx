@@ -18,7 +18,7 @@ import {Link } from "react-router-dom";
 
 
 
-export default function ToDelete({id, getitems, linkreset}) {
+export default function ToDelete({setdisplayorders, setdisplayobject, id, getitems, linkreset}) {
 
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
@@ -43,8 +43,11 @@ export default function ToDelete({id, getitems, linkreset}) {
   }, [open]);
 
   function deleteobject (){
-    axios.delete(`https://photouploadobisto.onrender.com/delete/objet/${id}`)
-
+    axios.delete(`https://photouploadobisto.onrender.com/delete/objet/${id}`).then(
+      alert(`L\'objet ${id} a été supprimé`)
+      )
+    setdisplayobject('inline')
+    setdisplayorders('none')
   }
 
 

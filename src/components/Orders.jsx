@@ -28,7 +28,7 @@ const rows = [
   createData(13, 6, 6, 1, "18-09-2022"),
 ];
 
-export default function Orders({commandespropio, setOrders, linkreset}) {
+export default function Orders({displayorders, commandespropio, setOrders, linkreset}) {
 
 const [commande, setCommande] = React.useState([])
 

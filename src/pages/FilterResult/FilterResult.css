@@ -22,6 +22,9 @@
     background: rgba(233, 232, 232, 0.37);
 
 }
+#searchResultnull{
+    margin: auto;
+}
 select{
     font-weight: bold;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

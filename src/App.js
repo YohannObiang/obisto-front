@@ -120,6 +120,7 @@ export default function PersistentDrawerLeft() {
     var filtered = Objets.filter(item => item.objet.toLowerCase().includes(SearchTerm.toLowerCase()));
     console.log(filtered)
     setfilteredstuffs(filtered)
+ 
 
   }
     else{
@@ -161,6 +162,11 @@ export default function PersistentDrawerLeft() {
   }
 }
   
+const [displayobject, setdisplayobject] = React.useState('none')
+const [displayorders, setdisplayorders] = React.useState('inline')
+
+
+
 
 
 
@@ -369,8 +375,8 @@ export default function PersistentDrawerLeft() {
         setBorrowed={setBorrowed}
         />} /> 
         <Route path={login} element={<SignIn setlogin={setlogin} setloggedin={setloggedin}/>} /> 
-        <Route path={loggedin} element={<Dashboard linkreset={linkreset} setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
-        <Route path="/Ajouter-un-article/maj" element={<Dashboardmaj  linkreset={linkreset}   setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path={loggedin} element={<Dashboard displayorders={displayorders} setdisplayorders={setdisplayorders} displayobject={displayobject} setdisplayobject={setdisplayobject} linkreset={linkreset} setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path="/Ajouter-un-article/maj" element={<Dashboardmaj displayorders={displayorders} setdisplayorders={setdisplayorders} displayobject={displayobject} setdisplayobject={setdisplayobject}  linkreset={linkreset}   setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
         <Route path="/Details" element={<Details
         Borrowed={Borrowed}

@@ -200,7 +200,7 @@ console.log(localStorage.getItem('proprio'))
               label="Mot de passe"
               type="password"
               id="password"
-              autoComplete="new-password"
+              autoComplete="current-password"
               onChange={(e)=> setPwd(e.target.value)}
               value={pwd}
             />

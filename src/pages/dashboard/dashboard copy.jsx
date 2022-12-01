@@ -84,7 +84,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
+export default function Dashboardmaj({displayorders, setdisplayorders, displayobject, setdisplayobject,IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
 
     const [Proprio, setProprio] = useState([]);
 
@@ -228,7 +228,7 @@ console.log(Proprio)
 
 
 
-  setlinkreset('Ajouter-un-article/maj')
+  setlinkreset('Ajouter-un-article')
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -285,7 +285,7 @@ console.log(Proprio)
             <Divider />
             <List>
         
-            <Link to='objets'>
+           
                 <ListItem disablePadding onClick={Commandes}>
                 <ListItemButton>
                     <ListItemIcon>
@@ -296,7 +296,6 @@ console.log(Proprio)
                     
                 </ListItemButton>
                 </ListItem>
-            </Link>
 
                 <ListItem disablePadding onClick={Objet}>
                 <ListItemButton>
@@ -323,13 +322,15 @@ console.log(Proprio)
         </Drawer>
         <Main open={open} >
             <DrawerHeader />
-        <div id="Commandes">
+        <div id="Commandes" style={{display: displayorders}}>
             <h2>Commandes</h2>
-            <Orders linkreset={linkreset}  commandespropio={commandespropio}/>
+            <Orders displayorders={displayorders} linkreset={linkreset}  commandespropio={commandespropio}/>
         </div>
-        <div id="Objets">
+        <div id="Objets" style={{display: displayobject}}>
             <h2>Objets</h2>
             <Objets 
+            setdisplayobject={setdisplayobject}
+            setdisplayorders={setdisplayorders}
             id={id}
             getitems={getitems}
             data={data}
