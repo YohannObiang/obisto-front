@@ -37,7 +37,7 @@ const Categorie = ({IdCategorie, setBorrowed}) => {
  
 
   const getObjets = async () => {
-    var response = await axios.get("http888://localhost:4000/objets");
+    var response = await axios.get("https://photouploadobisto.onrender.com/objets");
     setObjets(response.data);
 
   };
@@ -223,7 +223,7 @@ onClick={()=>Borrow(item.id_objet)}
 
         
         </div>
-        <h2 style={{display: displaystate}} id="searchResultnull">Aucun Résultat</h2>
+        <h2 style={{display: displaystate}}>Aucun Résultat</h2>
 
         </div>
      );
