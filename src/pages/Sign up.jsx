@@ -21,6 +21,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 
 
 
@@ -41,7 +45,7 @@ const theme = createTheme({
   },
 });
 export default function SignUp() {
-
+  const [value, setValue] = React.useState(null);
   const [name, setname]=React.useState('')
   const [msg, setmsg]=React.useState('Désolé!!!')
 
@@ -55,7 +59,7 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    const post = {"nom":data.get('lastName'),"prenom":data.get('firstName'),"date_de_naissance":Date,"sexe":{sexe},"telephone":data.get('phone'),"email_proprio":data.get('email'),"password":data.get('password')}
+    const post = {"nom":data.get('lastName'),"prenom":data.get('firstName'),"date_de_naissance":value,"sexe":{sexe},"telephone":data.get('phone'),"email_proprio":data.get('email'),"password":data.get('password')}
     
     
     // function successful(){
@@ -94,7 +98,7 @@ export default function SignUp() {
 
   const [open, setOpen] = React.useState(false);
   const [sexe, setsexe] = React.useState('');
-  const [Date, setDate] = React.useState('');
+  const [Date, setDate] = React.useState(value);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -132,7 +136,6 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="standard"
 
                   required
                   fullWidth
@@ -146,7 +149,6 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  variant="standard"
 
                   autoComplete="given-name"
                   name="firstName"
@@ -157,7 +159,7 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-              <FormControl variant="standard" sx={{ width:'100%'}}>
+              <FormControl  sx={{ width:'100%'}}>
               <InputLabel id="demo-simple-select-standard-label">Sexe</InputLabel>
               <Select
                 labelId="demo-simple-select-standard-label"
@@ -175,12 +177,22 @@ export default function SignUp() {
             </Grid>
             <br /><br />
             <Grid item xs={12}>
-              <label for='endDate' className='labeldate'><input type="date" name="endDate" defaultValue={Date} onChange={handleDate} id="endDate" /></label>
-              <Divider/>
-            </Grid>
+            <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DatePicker
+              
+                label="Date de naissance"
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                sx={{width:"100%"}}
+                renderInput={(params) => <TextField sx={{width:"100%"}} {...params} />}
+              />
+            </LocalizationProvider>
+              {/* <label for='endDate' className='labeldate'><input type="date" name="endDate" defaultValue={Date} onChange={handleDate} id="endDate" /></label> */}            </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="standard"
+                  
 
                   required
                   fullWidth
@@ -192,7 +204,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="standard"
+                  
 
                   required
                   fullWidth
@@ -204,7 +216,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="standard"
+                  
 
                   required
                   fullWidth
@@ -217,7 +229,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  variant="standard"
+                  
 
                   required
                   fullWidth
