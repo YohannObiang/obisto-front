@@ -223,7 +223,7 @@ onClick={()=>Borrow(item.id_objet)}
 
         
         </div>
-        <h2 style={{display: displaystate}}>Aucun Résultat</h2>
+        {/* <h2 style={{display: displaystate}}>Aucun Résultat</h2> */}
 
         </div>
      );

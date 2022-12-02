@@ -304,7 +304,6 @@ export default function CheckoutForm({Borrowed}) {
           )}
         </Paper>
       </Container>
-      <button onClick={handlePrint}>print</button>
     </ThemeProvider>
   );
 }
