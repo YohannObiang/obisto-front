@@ -89,7 +89,7 @@ const FilterResult = ({filteredstuffs, SearchTerm, setfilteredstuffs,setBorrowed
         <div className="container">
         <h2 style={{color:'#262D44'}} >Résultat de recherche pour: "{SearchTerm}"</h2>
         <div className="filter">
-            <select name="" id="price" onChange={handleChangePrix} style={{color:'#262D44'}}>
+            <select className="selectprice" name="" id="price" onChange={handleChangePrix} style={{color:'#262D44'}}>
                 <option value={0}>--- Prix --- (fcfa)</option>
                 <option value={1}>0 - 2500</option>
                 <option value={2}>2501 - 5000</option>

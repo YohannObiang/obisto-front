@@ -24,14 +24,7 @@
     align-items: center;
     justify-content: space-around;
 }
-select{
-    font-weight: bold;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    background: transparent;
-    margin: 10px;
-    transition: 0.1s;
-}
+
 .description{
     height: 84px;
     width: 100%;
