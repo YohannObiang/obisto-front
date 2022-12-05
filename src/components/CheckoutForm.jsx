@@ -19,7 +19,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
 
@@ -130,6 +131,12 @@ export default function CheckoutForm({Borrowed}) {
   var fin = formatDate(new Date(EndDate));
   var code = Math.floor(Math.random()*9999)
 
+  const initialOptions = {
+    "client-id": "test",
+    currency: "Fcfa",
+    intent: "capture",
+    "data-client-token": "abc123xyz==",
+};
 
   const datedecommande = new Date()
   const commande = {
@@ -179,6 +186,9 @@ export default function CheckoutForm({Borrowed}) {
   });
 
   var total = Borrowed.prix_jour * BorrowPeriod
+
+
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -279,16 +289,36 @@ export default function CheckoutForm({Borrowed}) {
 
                 
                   {activeStep === steps.length - 1 ? 
-                  <Button
+                  <div
                   variant="contained"
                   onClick={post}
-                  sx={{ mt: 3, ml: 1 }}
+                  sx={{ mt: 0, ml: 1 }}
                   color='secondary'
                 >
-                  <strong>
-                  Commander
-                  </strong>
-                  </Button> : <Button
+                  
+                  <PayPalScriptProvider
+        options={{ "client-id": 'test' }}
+      >
+        <PayPalButtons
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: String(total/620),
+                  },
+                },
+              ],
+            });
+          }}
+          onApprove={async (data, actions) => {
+            const details = await actions.order.capture();
+            const name = details.payer.name.given_name;
+            alert("Paiement effectué avec succès par  " + name);
+          }}
+        />
+      </PayPalScriptProvider>
+                  </div> : <Button
                 variant="contained"
                 onClick={handleNext}
                 sx={{ mt: 3, ml: 1 }}
