@@ -305,7 +305,7 @@ export default function CheckoutForm({Borrowed}) {
               purchase_units: [
                 {
                   amount: {
-                    value: String(total/620),
+                    value: String(Math.floor(total*0.0016)),
                   },
                 },
               ],
