@@ -291,7 +291,6 @@ export default function CheckoutForm({Borrowed}) {
                   {activeStep === steps.length - 1 ? 
                   <div
                   variant="contained"
-                  onClick={post}
                   sx={{ mt: 0, ml: 1 }}
                   color='secondary'
                 >
@@ -315,6 +314,9 @@ export default function CheckoutForm({Borrowed}) {
             const details = await actions.order.capture();
             const name = details.payer.name.given_name;
             alert("Paiement effectué avec succès par  " + name);
+            post();
+            setActiveStep(activeStep + 1);
+            
           }}
         />
       </PayPalScriptProvider>
