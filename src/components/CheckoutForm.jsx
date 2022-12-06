@@ -98,13 +98,9 @@ export default function CheckoutForm({Borrowed}) {
         throw new Error('Unknown step');
     }
   }
-
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [IDobjet, setIDobjet] = React.useState(0);
   const [IDorders, setIDorders] = React.useState(0);
 
-
-
+  const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -313,7 +309,6 @@ export default function CheckoutForm({Borrowed}) {
           onApprove={async (data, actions) => {
             const details = await actions.order.capture();
             const name = details.payer.name.given_name;
-            alert("Paiement effectué avec succès par  " + name);
             post();
             setActiveStep(activeStep + 1);
             
@@ -323,7 +318,7 @@ export default function CheckoutForm({Borrowed}) {
                   </div> : <Button
                 variant="contained"
                 onClick={handleNext}
-                sx={{ mt: 3, ml: 1 }}
+                sx={{ mt: 0, ml: 1 }}
                 color='secondary'
               >
                 <strong>

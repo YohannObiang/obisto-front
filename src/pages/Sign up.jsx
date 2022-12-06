@@ -47,7 +47,7 @@ const theme = createTheme({
 export default function SignUp() {
   const [value, setValue] = React.useState(null);
   const [name, setname]=React.useState('')
-  const [msg, setmsg]=React.useState('Désolé!!!')
+  const [msg, setmsg]=React.useState('Erreur!! Veuillez vérifier vos informations ou alors réessayez plus tard')
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,7 +73,9 @@ export default function SignUp() {
 
           console.log(res);
           if(String(res.data)==="POSTED"){
-            setmsg(`Félicitations !!!`)
+            setmsg(`Bienvenue dans la communauté Obisto! 
+    document.getElementById('accountinfos').style.display='none';
+    Veuillez vous rendre à l'onglet "Verifier votre compte" à partir des "Paramètres", dans le menu principal de votre tableau de bord afin de profite pleinement des services de la plaforme `)
             document.getElementById('backtoregistering').style.display='none'
             document.getElementById('gotologin').style.display='inline'
           }

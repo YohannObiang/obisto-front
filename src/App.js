@@ -17,7 +17,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Dashboard from './pages/dashboard/dashboard'
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import GamesIcon from '@mui/icons-material/Games';
-import DiscountIcon from '@mui/icons-material/Discount';
+import LoginIcon from '@mui/icons-material/Login';
 import logo from './assets/logo (2).png';
 import './App.css';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -200,7 +200,7 @@ const [displayorders, setdisplayorders] = React.useState('inline')
             color="inherit"
             sx={{width:'fit-content'}}
           >
-            <DiscountIcon sx={{color:'#262D44'}}/>
+            <LoginIcon sx={{color:'#262D44'}}/>
           </IconButton>
           </Tooltip>
 

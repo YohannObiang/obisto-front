@@ -32,7 +32,36 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import Orders from '../../components/Orders';
 import Objets from '../../components/Objets';
 import Tooltip from '@mui/material/Tooltip';
+import Webcam from "react-webcam";
+import Takeaphotobtn from "../../components/takeaphotobtn"
+import ShowImage from "../../components/ShowImage";
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+
+
+const videoConstraints = {
+  width: 1280,
+  height: 720,
+  facingMode: "user"
+};
+
+const steps = ['Vérification de la pièce d\'identité', 'Identification du propriétaire'];
 
 const drawerWidth = 240;
 
@@ -215,13 +244,113 @@ console.log(Proprio)
 
   }
   function accountinfo(){
-    document.getElementById('accountinfos').style.display='inline';
+    document.getElementById('identityVerification').style.display='inline';
     document.getElementById('settingsoptions').style.display='none';
+    document.getElementById('editInfos').style.display='none';
+    document.getElementById('accountinfos').style.display='inline';
+    document.getElementById('editpassword').style.display='none';
+
+    
+  }
+  function editaccount(){
+    document.getElementById('identityVerification').style.display='none';
+    document.getElementById('settingsoptions').style.display='none';
+    document.getElementById('editInfos').style.display='inline';
+    document.getElementById('accountinfos').style.display='inline';
+    document.getElementById('editpassword').style.display='none';
+  }
+  
+  function editpwd(){
+    document.getElementById('identityVerification').style.display='none';
+    document.getElementById('settingsoptions').style.display='none';
+    document.getElementById('editInfos').style.display='none';
+    document.getElementById('editpassword').style.display='inline';
+    document.getElementById('accountinfos').style.display='inline';
+
+
   }
 
+  const [imgSrc, setimgSrc] = React.useState('');
+    const webcamRef = React.useRef(null);
+    const capture = React.useCallback(
+      () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        console.log(imageSrc);
+        setimgSrc(imageSrc);
+      },
+      [webcamRef]
+    );
+    const [activeStep, setActiveStep] = React.useState(0);
+    const handleNext = () => {
+      setActiveStep(activeStep + 1);
+    };
   
-
+    const handleBack = () => {
+      setActiveStep(activeStep - 1);
+    };
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      console.log({
+        nom: data.get('lastName'),
+        prenom: data.get('firstName'),
+        phone: data.get('phone'),
+        email: data.get('email'),
+        password: data.get('password'),
+      });
+      const post = {"nom":data.get('lastName'),"prenom":data.get('firstName'),"date_de_naissance":value,"sexe":{sexe},"telephone":data.get('phone'),"email_proprio":data.get('email'),"password":data.get('password')}
+      
+      
+      // function successful(){
+      //   setmsg('Felicitations vous')
+      // }
+      // setname(data.get('firstName'))
+      if(data.get('email').includes('@') && data.get('email').includes('.')){
+        if (data.get('password').length > 8) {
+          if (data.get('password') === data.get('passwordrepeated')) {
+            axios.post('https://photouploadobisto.onrender.com/ajout/proprietaire', post).then(res => {
   
+            console.log(res);
+            if(String(res.data)==="POSTED"){
+              setmsg(`Bienvenue dans la communauté Obisto! 
+      document.getElementById('accountinfos').style.display='none';
+      Veuillez vous rendre à l'onglet "Verifier votre compte" à partir des "Paramètres", dans le menu principal de votre tableau de bord afin de profite pleinement des services de la plaforme `)
+              document.getElementById('backtoregistering').style.display='none'
+              document.getElementById('gotologin').style.display='inline'
+            }
+            
+          })
+          }
+          else{
+            alert('Les mots de passes saisis ne correspondent pas')
+          }
+          
+        }
+        else{
+          alert('Votre mot de passe doit contenir au moins 8 caracteres') 
+        }
+     
+      }
+      else{
+        alert('Votre adresse email doit etre au format suivant: "obisto@abc.xyz"')
+      }
+     
+    };
+    const [value, setValue] = React.useState(null);
+    const [msg, setmsg]=React.useState('Erreur!! Veuillez vérifier vos informations ou alors réessayez plus tard')
+    const [sexe, setsexe] = React.useState('');
+    const [Date, setDate] = React.useState(value);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+    function handlechangesexe(e){
+      setsexe(e.target.value)
+    }
     
     
 
@@ -292,7 +421,18 @@ console.log(Proprio)
                     <HandshakeIcon sx={{color:'#262D44'}}/>
                     </ListItemIcon>
             
-                    Commandes
+                    Commandes reçues
+                    
+                </ListItemButton>
+                </ListItem>
+
+                <ListItem disablePadding onClick={()=>{alert('Onglet indisponible pour le moment')}}>
+                <ListItemButton>
+                    <ListItemIcon>
+                    <HandshakeIcon sx={{color:'#262D44'}}/>
+                    </ListItemIcon>
+            
+                    Emprunts 
                     
                 </ListItemButton>
                 </ListItem>
@@ -303,7 +443,7 @@ console.log(Proprio)
                     <WidgetsIcon sx={{color:'#262D44'}}/>
                     </ListItemIcon>
                 
-                    Objets
+                    Vos objets
                     
                 </ListItemButton>
                 </ListItem>
@@ -323,11 +463,11 @@ console.log(Proprio)
         <Main open={open} >
             <DrawerHeader />
         <div id="Commandes" style={{display: displayorders}}>
-            <h2>Commandes</h2>
+        <h2>Commandes reçus</h2>
             <Orders displayorders={displayorders} linkreset={linkreset}  commandespropio={commandespropio}/>
         </div>
         <div id="Objets" style={{display: displayobject}}>
-            <h2>Objets</h2>
+            <h2>Vos objets</h2>
             <Objets 
             setdisplayobject={setdisplayobject}
             setdisplayorders={setdisplayorders}
@@ -342,22 +482,234 @@ console.log(Proprio)
             <h2 id="settingstitle">Paramètres</h2>
             <div id="settingsoptions">
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={accountinfo}>
                     Verifier son compte
                 </ListItemButton>
               </ListItem>
               <ListItem disablePadding >
-                <ListItemButton onClick={accountinfo}>
+                <ListItemButton onClick={editaccount}>
                     Information du compte
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding >
+                <ListItemButton onClick={editpwd}>
+                    Modifier le mot de passe
                 </ListItemButton>
               </ListItem>
             </div>
             <div id="accountinfos">
-              
-              <Button onClick={backtooptions}>Retour</Button>
-                <h3>Informations de compte</h3>
-            </div>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ m: 3 }}>
 
+              <Button onClick={backtooptions}>Retour</Button>
+              </Box>
+              <div id='identityVerification'>
+              {activeStep === steps.length ? (
+                  <> 
+                  <h4 style={{textAlign:'center', margin:'75px auto', width:'80%'}}>Votre vérification de compte a été soumise avec succès !</h4>
+                  </>
+                ) : (
+                  
+                  <div style={{display:'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center', paddingBottom:'5vw'}}>
+                  <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5, width:'fit-content', margin: 'auto' }} >
+                  {steps.map((label) => (
+                    <Step key={label} >
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                  </Stepper>
+                  <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={videoConstraints}
+                    className="photoToVerify"
+                    sx={{margin: 'auto'}}
+                  />
+                  <ShowImage activeStep={activeStep} setActiveStep={setActiveStep} imgSrc={imgSrc} capture={capture}/>
+                </div>
+                )}
+              </div>
+              <div id='editInfos'>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ m: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Nom"
+                  name="lastName"
+                  autoComplete="family-name"
+                  autoFocus
+
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="Prénom"
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <FormControl  sx={{ width:'100%'}}>
+              <InputLabel id="demo-simple-select-standard-label">Sexe</InputLabel>
+              <Select
+                labelId="demo-simple-select-standard-label"
+                label="sexe"
+                id="sexe"
+                onChange={handlechangesexe}
+                value={sexe}
+
+              >
+               
+                <MenuItem value="Homme">Homme</MenuItem>
+                <MenuItem value="Femme">Femme</MenuItem>
+              </Select>
+            </FormControl>
+            </Grid>
+            <br /><br />
+            <Grid item xs={12}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DatePicker
+              
+                label="Date de naissance"
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                sx={{width:"100%"}}
+                renderInput={(params) => <TextField sx={{width:"100%"}} {...params} />}
+              />
+            </LocalizationProvider>
+              {/* <label for='endDate' className='labeldate'><input type="date" name="endDate" defaultValue={Date} onChange={handleDate} id="endDate" /></label> */}            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  
+
+                  required
+                  fullWidth
+                  id="email"
+                  label="Addresse Email"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  
+
+                  required
+                  fullWidth
+                  id="phone"
+                  label="Téléphone"
+                  name="phone"
+                  autoComplete="phone"
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                {/* <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                /> */}
+              </Grid>
+            </Grid>
+            <div>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
+        Open alert dialog
+      </Button> */}
+      {/* <Dialog
+        open={open}
+        // onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle sx={{width:'300px'}} id="alert-dialog-title">
+          {/* {"Use Google's location service?"} */}
+        {/* </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description"> */}
+            {/* {msg} */}
+          {/* </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} id='backtoregistering'>Retour</Button>
+          <Link href="/Ajouter-un-article">
+
+          <Button  autoFocus id='gotologin'>
+            Se connecter
+          </Button>
+          </Link>
+
+        </DialogActions> */} 
+      {/* </Dialog> */}
+    </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              color='secondary'
+              onClick={handleClickOpen}
+            >
+
+              <strong>
+              Mettre à jour</strong>
+            </Button>
+
+            
+          </Box>
+              </div>
+              <div id="editpassword" style={{ margin: 'auto', width:'80%' }}>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ m: 3 }}>
+              <h4>Modifier votre mot de passe</h4>
+              <Grid item xs={12} sx={{ mb: 3 }}>
+                <TextField
+                  
+
+                  required
+                  fullWidth
+                  name="password"
+                  label="Mot de passe actuel"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12} sx={{ mb: 3 }}>
+                <TextField
+                  
+
+                  required
+                  fullWidth
+                  name="passwordrepeated"
+                  label="Nouveau mot de passe"
+                  type="passwordrepeated"
+                  id="passwordrepeated"
+                />
+              </Grid>
+              <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              color='secondary'
+              onClick={handleClickOpen}
+            >
+
+              <strong>
+              Mettre à jour</strong>
+            </Button>
+              </Box>
+              </div>            </div>
+              
               
               
 

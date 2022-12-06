@@ -152,12 +152,25 @@ span{
 .slideimg img{
   margin: auto;
 }
+.photoToVerify{
+  width: 80vw;
+  height: 30vw;
+  margin: auto;
+}
+#accountinfos{
+  flex-direction: column;
+  justify-content: center;
+}
 @media (max-width:900px){
    .avantages{
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 85vw;
     margin: 25px auto;
+  }
+  .photoToVerify{
+    width: 100%;
+    height: 300px;
   }
   .slideimg{
     height: 330px;
