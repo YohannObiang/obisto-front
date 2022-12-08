@@ -157,6 +157,9 @@ span{
   height: 30vw;
   margin: auto;
 }
+#lend{
+  display: none;
+}
 #accountinfos{
   flex-direction: column;
   justify-content: center;

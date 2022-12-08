@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 
 
-export default function AddressForm({StartDate, setStartDate, setEndDate, EndDate, 
+export default function AddressForm({StartDate, setStartDate, setEndDate, EndDate, Proprio,
   setBorrowPeriod, setNom,setPrenom,setEmail,setPhone,setQuartier, Nom,Prenom,Email,Phone,Quartier}) {
 
 var date1 = new Date(String(StartDate));

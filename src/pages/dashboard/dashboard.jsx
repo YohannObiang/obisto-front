@@ -31,6 +31,7 @@ import {Link } from "react-router-dom";
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import Orders from '../../components/Orders';
 import Objets from '../../components/Objets';
+import Lendings from '../../components/Lendings';
 import Tooltip from '@mui/material/Tooltip';
 import Webcam from "react-webcam";
 import Takeaphotobtn from "../../components/takeaphotobtn"
@@ -114,7 +115,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 
-export default function Dashboard({displayorders, setdisplayorders, displayobject, setdisplayobject,IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
+export default function Dashboard({setSuccess, displayorders, setdisplayorders, displayobject, setdisplayobject,IdUser, setIdUser, setlogin, setloggedin, setlinkreset, linkreset}) {
 
     const [Proprio, setProprio] = useState([]);
 
@@ -151,6 +152,7 @@ const getProprio = async () => {
 
 useEffect(() => {
   getProprio();
+
 },[]);
 
 
@@ -165,6 +167,8 @@ console.log(Proprio)
 // function listorders(){
   var commandespropio = commandes.filter((element,index)=>{
     return element.id_proprietaire === Proprio.id_proprietaire})
+    var lendproprio = commandes.filter((element,index)=>{
+      return element.id_client === Proprio.id_proprietaire})
     console.log(commandespropio)
     // setcommandespropio(commandespro)
 // }
@@ -173,6 +177,8 @@ console.log(Proprio)
 
  var data = items.filter((element,index)=>{
   return element.id_proprietaire === Proprio.id_proprietaire})
+  var data = items.filter((element,index)=>{
+    return element.id_proprietaire === Proprio.id_proprietaire})
  console.log(items)
  var id = Proprio.id_proprietaire;
 
@@ -207,6 +213,7 @@ console.log(Proprio)
   const logout = () => {
 
     document.getElementById('appbar').style.display="inline";
+    setSuccess(false)
     setloggedin('/loggedoff')
     setlogin('/Ajouter-un-article')
 
@@ -214,6 +221,7 @@ console.log(Proprio)
   
   function Commandes(){
     document.getElementById('Objets').style.display='none';
+    document.getElementById('lend').style.display='none';
     document.getElementById('Settings').style.display='none';
     document.getElementById('Commandes').style.display='inline';
     setOpen(false);
@@ -222,6 +230,7 @@ console.log(Proprio)
   }
   function Objet(){
     document.getElementById('Commandes').style.display='none';
+    document.getElementById('lend').style.display='none';
     document.getElementById('Objets').style.display='inline';
     document.getElementById('Settings').style.display='none';
 
@@ -232,7 +241,18 @@ console.log(Proprio)
   function Settings(){
     document.getElementById('Commandes').style.display='none';
     document.getElementById('Objets').style.display='none';
+    document.getElementById('lend').style.display='none';
     document.getElementById('Settings').style.display='inline';
+
+    setOpen(false);
+
+
+  }
+  function lendfunction(){
+    document.getElementById('Commandes').style.display='none';
+    document.getElementById('Objets').style.display='none';
+    document.getElementById('lend').style.display='inline';
+    document.getElementById('Settings').style.display='none';
 
     setOpen(false);
 
@@ -427,7 +447,7 @@ console.log(Proprio)
                 </ListItemButton>
                 </ListItem>
 
-                <ListItem disablePadding onClick={()=>{alert('Onglet indisponible pour le moment')}}>
+                <ListItem disablePadding onClick={lendfunction}>
                 <ListItemButton>
                     <ListItemIcon>
                     <HandshakeIcon sx={{color:'#262D44'}}/>
@@ -466,6 +486,12 @@ console.log(Proprio)
         <div id="Commandes" style={{display: displayorders}}>
             <h2>Commandes reçus</h2>
             <Orders displayorders={displayorders} linkreset={linkreset}  commandespropio={commandespropio}/>
+        </div>
+        <div id="lend">
+          <h2>Emprunts</h2>
+          <Lendings
+          displayorders={displayorders} linkreset={linkreset}  lendproprio={lendproprio}
+          />
         </div>
         <div id="Objets" style={{display: displayobject}}>
             <h2>Vos objets</h2>

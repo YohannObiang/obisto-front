@@ -19,6 +19,7 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import GamesIcon from '@mui/icons-material/Games';
 import LoginIcon from '@mui/icons-material/Login';
 import logo from './assets/logo (2).png';
+import SignInToRent from './pages/SignInToRent';
 import './App.css';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import axios from 'axios';
@@ -128,6 +129,7 @@ export default function PersistentDrawerLeft() {
     }
   };
 
+  const [success, setSuccess] = useState(false);
   const [Borrowed, setBorrowed] = useState('');
   const [SingleObject, setSingleObject] = useState({});
   const [IdCategorie, setIdCategorie] = useState('');
@@ -374,7 +376,7 @@ const [displayorders, setdisplayorders] = React.useState('inline')
         IdCategorie = {IdCategorie}
         setBorrowed={setBorrowed}
         />} /> 
-        <Route path={login} element={<SignIn setlogin={setlogin} setloggedin={setloggedin}/>} /> 
+        <Route path={login} element={<SignIn success={success} setSuccess={setSuccess} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path={loggedin} element={<Dashboard displayorders={displayorders} setdisplayorders={setdisplayorders} displayobject={displayobject} setdisplayobject={setdisplayobject} linkreset={linkreset} setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path="/Ajouter-un-article/maj" element={<Dashboardmaj displayorders={displayorders} setdisplayorders={setdisplayorders} displayobject={displayobject} setdisplayobject={setdisplayobject}  linkreset={linkreset}   setlinkreset={setlinkreset} setlogin={setlogin} setloggedin={setloggedin}/>} /> 
         <Route path="/Ajouter-un-article/Inscription" element={<SignUp/>} /> 
@@ -383,7 +385,8 @@ const [displayorders, setdisplayorders] = React.useState('inline')
         Back={Back}
         />} /> 
         <Route path="objets" element={<CheckoutForm/>}/>
-        <Route path="/Validation" element={<CheckoutForm
+        <Route path="/Validation" element={<SignInToRent
+        success={success} setSuccess={setSuccess}
          Borrowed={Borrowed}
         />} /> 
       </Routes>

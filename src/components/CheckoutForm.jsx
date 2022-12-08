@@ -46,24 +46,35 @@ const theme = createTheme({
     },
   },
 });
-export default function CheckoutForm({Borrowed}) {
-
+export default function CheckoutForm({Borrowed,Proprio}) {
+console.log(Proprio)
+  const getProprio = async () => {
+    var response = await axios.get("https://photouploadobisto.onrender.com/proprietaires");
+    console.log(response.data)
+    console.log(localStorage.getItem('proprio'))
+  
+  };
+  var nn = localStorage.getItem('proprietaire')
+  
   const [StartDate, setStartDate] = React.useState('');
   const [EndDate, setEndDate] = React.useState('');
-  const [Nom, setNom] = React.useState('');
-  const [Prenom, setPrenom] = React.useState('');
-  const [Email, setEmail] = React.useState('');
-  const [Phone, setPhone] = React.useState('');
-  const [Quartier, setQuartier] = React.useState('');
+  const [Nom, setNom] = React.useState(localStorage.getItem('nom'));
+  const [Prenom, setPrenom] = React.useState(localStorage.getItem('prenom'));
+  const [Email, setEmail] = React.useState(localStorage.getItem('email'))
+  const [Phone, setPhone] = React.useState(localStorage.getItem('phone'))
+  const [Quartier, setQuartier] = React.useState('')
   const [BorrowPeriod, setBorrowPeriod] = React.useState('');
   const [Code, setCode] = React.useState('');
   const componentRef = useRef();
-
+React.useEffect(() => {
+    getProprio();
+  },[]);
   function getStepContent(step) {
-    
+  
     switch (step) {
       case 0:
         return <AddressForm 
+        Proprio={Proprio}
         StartDate={StartDate} setStartDate={setStartDate} 
         EndDate={EndDate} setEndDate={setEndDate}  
         setBorrowPeriod={setBorrowPeriod}
@@ -134,6 +145,8 @@ export default function CheckoutForm({Borrowed}) {
     "data-client-token": "abc123xyz==",
 };
 
+
+
   const datedecommande = new Date()
   const commande = {
   id_objet: Borrowed.id_objet,
@@ -148,6 +161,7 @@ export default function CheckoutForm({Borrowed}) {
   phone: Phone,
   quartier: Quartier,
   id_proprietaire: Borrowed.id_proprietaire,
+  id_client: parseInt(localStorage.getItem('id_proprio')),
   date_de_commande:  datedecommande.toLocaleDateString(),
   statut: "En attente",
   code: parseInt(`${Code}`)
