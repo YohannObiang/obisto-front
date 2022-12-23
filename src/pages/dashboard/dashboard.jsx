@@ -22,7 +22,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import GamesIcon from '@mui/icons-material/Games';
 import DiscountIcon from '@mui/icons-material/Discount';
-import logo from '../../assets/logo (2).png';
+import logo from '../../assets/logo copy.png';
 import '../../App.css';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -400,9 +400,9 @@ console.log(Proprio)
             </Tooltip>
 
 
-                <Link to="/">
+                <Link to="/" style={{display:'flex', alignItem: 'center', justifyContent: 'center'}}>
 
-<img  src={logo} alt="" onClick={()=>{document.getElementById('appbar').style.display="inline";}} />
+<img  src={logo} style={{height:'40px'}} alt="" onClick={()=>{document.getElementById('appbar').style.display="inline";}} />
 </Link>            </div>
             <Link to="/" >
                 <Button size='small' color='primary' onClick={logout}> 

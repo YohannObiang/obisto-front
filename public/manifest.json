@@ -1,18 +1,25 @@
 {
+  "short_name": "Obisto",
   "name": "Obisto",
   "icons": [
     {
-        "src": "/minilogo.png",
-        "type": "image/png",
-        "sizes": "1024x1024",
-        "purpose": "any maskable"
+      "src": "minilogo64.png",
+      "sizes": "64x64 64x64 64x64 64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "minilogo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "minilogo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
-  
   ],
   "start_url": ".",
-    "short_name": "Obisto",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
-  }
-  
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

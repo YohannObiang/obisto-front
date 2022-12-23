@@ -18,7 +18,7 @@ import Dashboard from './pages/dashboard/dashboard'
 import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import GamesIcon from '@mui/icons-material/Games';
 import LoginIcon from '@mui/icons-material/Login';
-import logo from './assets/logo (2).png';
+import logo from './assets/logo copy.png';
 import SignInToRent from './pages/SignInToRent';
 import './App.css';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -191,9 +191,9 @@ const [displayorders, setdisplayorders] = React.useState('inline')
             </IconButton>
             </Tooltip>
 
-            <Link to="/accueil" onClick={()=>{setBack('accueil')}}>
+            <Link to="/accueil" onClick={()=>{setBack('accueil')}} style={{display:'flex', alignItem: 'center', justifyContent: 'center'}}>
 
-            <img  src={logo} alt="" />
+            <img  src={logo} alt="" style={{height:'40px'}}/>
             </Link>
           </div>
           <Link to="/Ajouter-un-article">
