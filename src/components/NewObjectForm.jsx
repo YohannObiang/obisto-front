@@ -105,8 +105,8 @@ function prixsemaine(e){
 
               >
               {categories.map((item) => {
-
-                <MenuItem value={item.Categorie}>{item.Categorie}</MenuItem>
+                return(
+                <MenuItem value={item.Categorie}>{item.Categorie}</MenuItem>)
               })}
 
               </Select>
