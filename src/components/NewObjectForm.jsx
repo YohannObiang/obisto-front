@@ -70,6 +70,8 @@ function prixsemaine(e){
   const getcategories = async () => {
     var response = await axios.get("https://photouploadobisto.onrender.com/categories");
     setcategories(response.data);
+    setcategories(response.data);
+
 
   };
 
@@ -106,7 +108,7 @@ function prixsemaine(e){
               >
               {categories.map((item) => {
                 return(
-                <MenuItem value={item.Categorie}>{item.Categorie}</MenuItem>)
+                <MenuItem key={item.Categorie} value={item.Categorie}>{item.Categorie}</MenuItem>)
               })}
 
               </Select>
