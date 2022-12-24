@@ -61,7 +61,17 @@ function prixsemaine(e){
       console.log(res)
     })
   }
+  const [categories, setcategories] = React.useState([]);
 
+  React.useEffect(() => {
+    getcategories();
+  }, []);
+
+  const getcategories = async () => {
+    var response = await axios.get("https://photouploadobisto.onrender.com/categories");
+    setcategories(response.data);
+
+  };
 
   return (
     <React.Fragment>
@@ -94,14 +104,11 @@ function prixsemaine(e){
                 value={CategorieObjet}
 
               >
+              {categories.map((item) => {
 
-                <MenuItem value="Sono">Sono</MenuItem>
-                <MenuItem value="Caméra">Caméra</MenuItem>
-                <MenuItem value="Jeu vidéo">Jeu vidéo</MenuItem>
-                <MenuItem value="Téléphone">Téléphone</MenuItem>
-               
-                <MenuItem value="Machine">Machine</MenuItem>
-                <MenuItem value="Outil">Outil</MenuItem>
+                <MenuItem value={item.Categorie}>{item.Categorie}</MenuItem>
+              })}
+
               </Select>
             </FormControl>
           </Grid>
