@@ -15,15 +15,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Dashboard from './pages/dashboard/dashboard'
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import GamesIcon from '@mui/icons-material/Games';
+import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
+import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
 import LoginIcon from '@mui/icons-material/Login';
 import logo from './assets/logo copy.png';
 import SignInToRent from './pages/SignInToRent';
 import './App.css';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import IronIcon from '@mui/icons-material/Iron';
+import CableIcon from '@mui/icons-material/Cable';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import axios from 'axios';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import Home from './pages/Home';
 import SignIn from './pages/Sign In';
 import SignUp from './pages/Sign up';
@@ -32,12 +34,12 @@ import Footer from './components/footer/Footer';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {Link } from "react-router-dom";
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 import InboxIcon from '@mui/icons-material/Inbox';
 import Details from './pages/Details/Details';
 import FilterResult from './pages/FilterResult/FilterResult'
 import Categorie from './pages/Categorie/Categorie';
-import ConstructionIcon from '@mui/icons-material/Construction';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
 import CheckoutForm from './components/CheckoutForm';
 import Dashboardmaj from './pages/dashboard/dashboard copy';
 const drawerWidth = 240;
@@ -230,96 +232,128 @@ const [displayorders, setdisplayorders] = React.useState('inline')
         </DrawerHeader>
         <Divider />
         <List>
-       
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Sono'); handleDrawerClose()}}>
+
+
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Fêtes & Evenements'); handleDrawerClose()}}>
 
             <ListItem disablePadding color='primary'>
               <ListItemButton>
                 <ListItemIcon>
-                  <VolumeUpIcon sx={{color:'#262D44'}}/>
+                  <CelebrationIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
-<span style={{color:'#262D44'}}>
-                Sono
+                <span style={{color:'#262D44'}}>
+                  Fêtes & Evénements
                 </span>
               </ListItemButton>
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Caméra'); handleDrawerClose()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Gaming'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <CameraAltIcon sx={{color:'#262D44'}}/>
+                  <SportsEsportsIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
 <span style={{color:'#262D44'}}>              
-                Caméras
+                Gaming
                 
               </span>
               </ListItemButton>
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Jeu vidéo'); handleDrawerClose()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Image & Son'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <GamesIcon sx={{color:'#262D44'}}/>
+                  <SlowMotionVideoIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
-<span style={{color:'#262D44'}}>              
-                Jeux vidéos
+              <span style={{color:'#262D44'}}>              
+                Image & Son
+              </span>
+              </ListItemButton>
+            </ListItem>
+            </Link>
+
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Cuisine'); handleDrawerClose()}}>
+
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <SoupKitchenIcon sx={{color:'#262D44'}}/>
+                </ListItemIcon>
+
+              <span style={{color:'#262D44'}}>              
+                Cuisine
                 
               </span>
               </ListItemButton>
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Téléphone'); handleDrawerClose()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Sport & Vacances'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <SmartphoneIcon sx={{color:'#262D44'}}/>
+                  <SportsTennisIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
 <span style={{color:'#262D44'}}>              
-                Téléphones
+                Sport & Vacances
                 
               </span>
               </ListItemButton>
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Outil'); handleDrawerClose()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Electroniques'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <ConstructionIcon sx={{color:'#262D44'}}/>
+                  <CableIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
 <span style={{color:'#262D44'}}>              
-                Outils
+                Electroniques
                 
               </span>
               </ListItemButton>
             </ListItem>
             </Link>
 
-            <Link to="/categorie" onClick={()=>{setIdCategorie('Machine'); handleDrawerClose()}}>
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Electroménagers'); handleDrawerClose()}}>
 
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  <PrecisionManufacturingIcon sx={{color:'#262D44'}}/>
+                  <IronIcon sx={{color:'#262D44'}}/>
                 </ListItemIcon>
 
-<span style={{color:'#262D44'}}>              
-                Machines
+              <span style={{color:'#262D44'}}>              
+                Electroménagers
+                
+              </span>
+              </ListItemButton>
+            </ListItem>
+            </Link>
+
+            <Link to="/categorie" onClick={()=>{setIdCategorie('Véhicules'); handleDrawerClose()}}>
+
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <DriveEtaIcon sx={{color:'#262D44'}}/>
+                </ListItemIcon>
+
+              <span style={{color:'#262D44'}}>              
+                Véhicules
                 
               </span>
               </ListItemButton>
